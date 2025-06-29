@@ -1,0 +1,41 @@
+{
+  "name": "Samminga Sainath Rao",
+  "headline": "Full-Stack Developer | Product Builder | AI Enthusiast",
+  "tagline": "Building innovative solutions from concept to code.",
+  "profilePicture": "/media/ChatGPT Image Jun 28, 2025, 02_23_31 PM.png",
+  "summary": [
+    "I'm a full-stack developer and product builder with a passion for turning complex challenges into elegant, impactful solutions. My journey in technology is driven by a desire to build things that matter, from founding a **NASSCOM-funded tech startup incubated at IIIT Bangalore** to architecting a diverse range of applications.",
+    "My toolkit is a blend of creativity and engineering. I leverage **React, Next.js, and Flutter** for dynamic user interfaces, build robust backend systems with **Node.js and Python**, and explore the frontiers of AI with **TensorFlow and LLMs**. This versatility allows me to not just write code, but to design, manage, and deliver complete products from concept to launch.",
+    "Beyond the code, I thrive in collaborative environments, a passion sharpened by competing in—and winning—multiple hackathons. I'm always excited to connect with fellow innovators and explore new challenges."
+  ],
+  "contact": {
+    "phone": "+918331098232",
+    "email": "sammingasainathrao@gmail.com",
+    "location": "India"
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/samminga",
+    "github": "https://github.com/sammingasainath",
+    "portfolio": "https://ssrao22.notion.site/"
+  },
+  "education": [
+    {
+      "degree": "B.Tech in CSE and M.Tech in Artificial Intelligence",
+      "institution": "RGIPT, Jais",
+      "gpa": "8.52/10",
+      "duration": "2021 - Present",
+      "status": "Current"
+    },
+    {
+      "degree": "APBIE: Intermediate",
+      "institution": "Andhra Pradesh Board",
+      "percentage": "95.7%",
+      "year": "2020"
+    },
+    {
+      "achievement": "JEE Advanced",
+      "status": "Qualified",
+      "year": "2021"
+    }
+  ]
+} 

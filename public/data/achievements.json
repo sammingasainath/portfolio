@@ -1,0 +1,233 @@
+{
+  "achievements": [
+    {
+      "id": 1,
+      "title": "NASSCOM Foundation's ThingQbator - Top 10 Finalist",
+      "description": "Achieved Top 10 Finalist position with projects FHAIDA+CRM and AMYR. AMYR secured Rs.5 Lakh Seed Grant Funding and was selected for mentorship by the NASSCOM Foundation.",
+      "date": "2024",
+      "category": "Competition/Funding",
+      "organization": "NASSCOM Foundation",
+      "project": "Amyr",
+      "impact": "Rs.5 Lakh Seed Grant Funding",
+      "link": "https://thingqbator.nasscomfoundation.org/main/programdetailview",
+      "featured": true,
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Achievements/Thingqbator/1.png",
+          "alt": "NASSCOM Foundation's ThingQbator - Top 10 Finalist"
+        },
+        {
+          "type": "image",
+          "src": "/media/Achievements/Thingqbator/certificate.jpg",
+          "alt": "AMYR - Rs.5 Lakh Seed Grant Funding"
+        },
+        { 
+          "type": "video",
+          "src": "https://www.youtube.com/watch?v=WJ5h80PloKE",
+          "alt": "Felicitation Ceremony"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "UDAAN 2023 Business Plan Competition - 1st Prize",
+      "description": "Won 1st prize in the UDAAN 2023 Business Plan Competition at RGIPT, demonstrating exceptional business planning and presentation skills.",
+      "date": "2023",
+      "category": "Competition",
+      "organization": "RGIPT",
+      "project": "Fhaida+ CRM",
+      "impact": "Rs. 25000 Prize Money",
+      "link": "https://drive.google.com/file/d/1woODQZURLzt9RRNwFlzw0onOX_-S1DaB/view",
+      "featured": true,
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Achievements/Udaan/felicitation.jpeg",
+          "alt": "Felicitated By Dr. V Narayanan, Chairman, ISRO "
+        },
+        {
+          "type": "image",
+          "src": "/media/Achievements/Udaan/Udaan Winning Certificate.jpg",
+          "alt": "UDAAN 2023 Business Plan Competition - 1st Prize Certificate"
+        }
+        
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Smart India Hackathon 2024 - Winner",
+      "description": "Led the Mini Juris 2.0 team to victory at Smart India Hackathon 2024 with the ESG Post Office Initiative—a digital solution that transformed Indian Postal Services through sustainable practices.",
+      "date": "2024",
+      "category": "Hackathon",
+      "organization": "Government of India",
+      "project": "Post4Planet: Transforming Indian Postal Services",
+      "impact": "Rs. 1 Lakh Cash Prize",
+      "link": "https://fhaida.medium.com/post4planet-transforming-indian-postal-services-4d4e6470c51e",
+      "featured": true,
+      "media": [
+        {
+          "type": "gallery",
+          "src": "/media/Achievements/SIH/Felicitation",
+          "alt": "Felicitation Ceremony"
+        },
+        {
+          "type": "image",
+          "src": "/media/Achievements/SIH/SIH.jpg",
+          "alt": "Winner with INR 1 Lakh Cash Prize  "
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Digital Marketing Success with Aastee.com",
+      "description": "Worked as a Digital Marketing Manager with Aastee.com (Real Estate Company) and successfully generated 900 leads from YouTube, demonstrating strong digital marketing capabilities.",
+      "date": "2023-2024",
+      "category": "Professional Achievement",
+      "organization": "Aastee.com",
+      "impact": "900 leads generated",
+      "link": "https://www.google.com/search?q=aastee",
+      "featured": false,
+      "media": [
+        {
+          "type": "gallery",
+          "src": "/media/Achievements/Aastee.com Digital Marketing Success/",
+          "alt": "Aastee.com Dashboard Screenshots"
+        }
+        
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Codeiam Hackathon 2024 - 1st Prize",
+      "description": "Won 1st prize at the Codeiam Hackathon held on July 14th, 2024, organized by Codeiam Club. Demonstrated exceptional coding skills and innovative problem solving abilities in Visakhapatnam District Level Hackathon",
+      "date": "July 2024",
+      "category": "Hackathon",
+      "organization": "Codeiam Club",
+      "project": "Smart CRM System in Google Sheets ",
+      "impact": "1st Prize Winner",
+      "featured": true,
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Achievements/Codiam Hackathon/3.jpeg",
+          "alt": "Presenting solution at Codeiam Hackathon 2024"
+        },
+        {
+          "type": "image",
+          "src": "/media/Achievements/Codiam Hackathon/2.jpeg",
+          "alt": "1st Prize Trophy - Codeiam Hackathon 2024"
+        },
+        {
+          "type": "image",
+          "src": "/media/Achievements/Codiam Hackathon/1.jpeg",
+          "alt": "Certificate of Achievement - 1st Prize Winner"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Multiple Hackathons and Competitions Finalist",
+      "description": "Finalist in various national and international hackathons and competitions, consistently demonstrating problem-solving skills and innovative thinking.",
+      "date": "2022-2024",
+      "category": "Competition",
+      "organization": "Various",
+      "link": "https://ssrao22.notion.site/",
+      "featured": false,
+      "media": [
+        {
+          "type": "gallery",
+          "src": "/media/Achievements/Multiple Hackathon Finalist/",
+          "alt": "Hackathon and Competitions Finalist"
+        }
+      ]
+    }
+  ],
+  "leadership": [
+    {
+      "id": 1,
+      "role": "General Secretary",
+      "organization": "Science and Technical Council, RGIPT",
+      "description": "Led technical initiatives and coordinated science and technology activities at the institute level.",
+      "duration": "2023-2024",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Leadership Positions/Science and Technical Council/2.jpg",
+          "alt": "Director Sir of RGIPT Praising the Science and Technical Council After Urjotsav 2023 - Technical Fest 2023"
+        },
+        {
+          "type": "image",
+          "src": "/media/Leadership Positions/Science and Technical Council/1.jpg",
+          "alt": "The Team"
+        },
+        {
+          "type": "image",
+          "src": "/media/Leadership Positions/Science and Technical Council/3.jpg",
+          "alt": "( Random Photo ) Me Supervising Events Over my Phone"
+        },
+        {
+          "type": "image",
+          "src": "/media/Leadership Positions/Science and Technical Council/4.jpg",
+          "alt": "Selection in S&T Council"
+        }
+
+
+        
+        
+      ]
+    },
+    {
+      "id": 2,
+      "role": "President",
+      "organization": "ThingQbator Student Body, RGIPT",
+      "description": "Headed the student body for the innovation and entrepreneurship program, mentoring fellow students and organizing events.",
+      "duration": "2022 - 2023",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Leadership Positions/Thingqbator/Team.jpg",
+          "alt": "The Team"
+        },
+        {
+          "type": "image",
+          "src": "/media/Leadership Positions/Thingqbator/2.jpg",
+          "alt": "Selection as President of ThingQbator Student Body"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "role": "Active Member",
+      "organization": "Entrepreneurship Cell, ACM, CodeChef",
+      "description": "Actively contributed to multiple student chapters, participating in coding competitions, entrepreneurship events, and technical workshops.",
+      "duration": "Throughout college",
+      "media": [
+        {
+          "type": "gallery",
+          "src": "/media/Leadership Positions/Active Participation/",
+          "alt": "Selection Letters for Various Positions in ACM, CodeChef, Entrepreneurship Cell"
+        }
+      ]
+    }
+  ],
+  "volunteering": [
+    {
+      "id": 1,
+      "activity": "STEM Teaching - Gyanapran Program",
+      "description": "Engaged in teaching STEM subjects to students under the Gyanapran program, contributing to educational outreach and rural development.",
+      "impact": "Rural education support",
+      "type": "Education/Social Impact",
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Leadership Positions/Volunteering/1.jpeg",
+          "alt": "Me Teaching STEM Subjects to Students"
+        }
+        
+        
+        
+      ]
+    }
+  ]
+} 

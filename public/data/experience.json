@@ -1,0 +1,64 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "company": "Sambin Technologies Private Limited",
+      "position": "Cofounder | Technical Architect & Product Manager",
+      "location": "Visakhapatnam, Andhra Pradesh, India",
+      "duration": "Apr 2024 - Present",
+      "type": "Full-time",
+      "description": "Founded and leading a tech startup funded by NASSCOM Foundation and incubated at IIIT Bangalore.",
+      "responsibilities": [
+        "Set up scalable and efficient technical architectures to support company projects and products",
+        "Conducted in-depth market surveys and research to stay ahead of industry trends and identify new opportunities",
+        "Managed the complete product lifecycle from concept to launch, ensuring quality and timely delivery",
+        "Led a team of 7 interns, providing mentorship and guidance to drive successful project outcomes",
+        "Handled legal compliance and regulatory requirements across various business aspects",
+        "Devised and implemented effective marketing strategies to boost product visibility and drive growth"
+      ],
+      "achievements": [
+        "Spearheaded the development of a robust backend using Appwrite, ensuring scalability and reliability",
+        "Designed an engaging UI/UX with a dystopian dark theme featuring a dynamic navbar and profile app bar",
+        "Integrated a voice assistant to facilitate inventory management and billing, enhancing functionality and user interaction",
+        "Coordinated with the development team and collaborated with clients to align deliverables with project goals"
+      ],
+      "technologies": ["Appwrite", "Flutter", "Voice Assistant Integration", "UI/UX Design"],
+      "current": true,
+      "media": [
+        {
+          "type": "gallery",
+          "src": "/media/Sambin Technologies/",
+          "alt": "Few Snaps from the Journey"
+        }
+        
+      ]
+    },
+    {
+      "id": 2,
+      "company": "Solvitarka Solutions Pvt Ltd",
+      "position": "Fullstack Development Intern",
+      "location": "Work From Home",
+      "duration": "May 27, 2024 - Oct 09, 2024",
+      "type": "Internship",
+      "description": "Worked as a fullstack development intern focusing on React/React Native applications and AI integration.",
+      "responsibilities": [
+        "Designed and developed Single Page Application (SPA) components and mobile apps using ReactJS/React Native",
+        "Assisted in various projects by brainstorming design ideas and refining UI/UX elements",
+        "Integrated communication with back-end server APIs following predefined protocols",
+        "Ensured comprehensive documentation and adherence to functional programming paradigms",
+        "Collaborated with the team to manage, optimize, and customize multiple web applications",
+        "Gained hands-on experience in fine-tuning LLMs for specialized tasks"
+      ],
+      "technologies": ["ReactJS", "NextJS", "Flutter","React Native", "API Integration", "LLM Fine-tuning"],
+      "current": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Solvitarka Technologies/1.jpg",
+          "alt": "Letter of Recommendation from Solvitarka Technologies"
+        }
+
+      ]
+    }
+  ]
+} 
