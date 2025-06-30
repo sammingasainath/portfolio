@@ -77,7 +77,23 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
   const closeModal = useCallback(() => {
     setSelectedProject(null);
     document.body.style.overflow = 'auto';
+    // Clear the URL hash when the modal is closed
+    if (window.location.hash) {
+      window.history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
   }, []);
+
+  // Effect to open modal from URL hash
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith('#project-')) {
+      const projectId = parseInt(hash.substring('#project-'.length), 10);
+      const projectToOpen = projects.find(p => p.id === projectId);
+      if (projectToOpen) {
+        openModal(projectToOpen);
+      }
+    }
+  }, [projects]);
 
   // Close modal on escape key
   useEffect(() => {

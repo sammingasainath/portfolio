@@ -1,0 +1,233 @@
+\documentclass[a4paper]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{ragged2e}
+
+
+\usepackage{etoolbox}
+\input{glyphtounicode}
+
+\emergencystretch=3em
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1in}
+
+\urlstyle{rm}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-3pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemWithoutTitle}[1]{
+  \item\small{
+  {#1 \vspace{-2pt}}
+    {\vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingc}[8]{
+\noindent
+\begin{minipage}[c]{0.5\linewidth}
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.3\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+    \end{minipage}\begin{minipage}[c]{0.5\linewidth}
+      \vspace{-1pt}\item 
+    \begin{tabular*}{0.3\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#5} & #6 \\
+      \textit{\small#7} & \textit{\small #8} \\
+    \end{tabular*}\vspace{-5pt}\end{minipage}
+}
+
+\newcommand{\resumeSubheadingb}[6]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \vspace{-3pt}
+      \textbf{#1} & #2 \\
+         \textit{\scriptsize(#3)} & \textit{\scriptsize #4} \\
+      \textit{\small#5} & \textit{\small #6} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingPro}[2]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & {\textit {\small{#2}}} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingProb}[2]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & {\textit {\small{#2}}} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingPOR}[2]{
+ \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{   #1} & #2 
+    \end{tabular*}
+  \vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeProject}[3]{
+    \item \textbf{#1} $|$ \emph{#2} $|$ \href{#3}{\faIcon{external-link-alt}}
+}
+
+\newlist{resumeSubHeadingList}{itemize}{1}
+\setlist[resumeSubHeadingList]{label={}, leftmargin=0.15in, rightmargin=0.15in}
+%------------------------
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge Samminga Sainath Rao} \\
+    \small \faPhone\ +918331098232 ~ \faEnvelope\ \href{mailto:sammingasainathrao@gmail.com}{sammingasainathrao@gmail.com} ~ 
+    \faLinkedin\ \href{https://www.linkedin.com/in/samminga}{linkedin.com/in/samminga} ~ 
+    \faGithub\ \href{https://github.com/sammingasainath}{github.com/sammingasainath}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+\begin{resumeSubHeadingList}
+    \resumeSubheading
+    {B.Tech in CSE and M.Tech in Artificial Intelligence}{2021 -- Present}
+    {Rajiv Gandhi Institute of Petroleum Technology (RGIPT), Jais}{CPI: 8.52/10}
+    \resumeSubheading
+    {APBIE: Intermediate}{2020}
+    {Andhra Pradesh Board}{Percentage: 95.7\%}
+    \resumeSubheading
+    {JEE Advanced}{2021}
+    {Qualified}{}
+\end{resumeSubHeadingList}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\begin{resumeSubHeadingList}
+    \resumeSubheading
+    {Solvitarka Solutions Pvt Ltd}{May 2024 -- Oct 2024}
+    {Fullstack Development Intern}{Work From Home}
+    \begin{itemize}[label={\small$\bullet$}, itemsep=-2pt]
+        \item Developed and optimized full-stack applications using React, React Native, and Next.js, focusing on creating responsive SPAs and mobile apps.
+        \item Integrated backend server APIs, managed application state, and collaborated on UI/UX design refinements.
+        \item Gained hands-on experience in fine-tuning and implementing Large Language Models (LLMs) for specialized tasks.
+    \end{itemize}
+
+    \resumeSubheading
+    {Sambin Technologies Private Limited}{Apr 2024 -- Present}
+    {Cofounder | Software Engineer \& Product Manager}{Visakhapatnam, India}
+    \begin{itemize}[label={\small$\bullet$}, itemsep=-2pt]
+        \item Architected scalable systems, managed the full product lifecycle, and led a team of 7 interns.
+        \item Drove market research, devised marketing strategies, and handled legal compliance for a NASSCOM-funded startup.
+        \item Spearheaded a voice-based billing software project, integrating an Appwrite backend and a voice assistant.
+    \end{itemize}
+\end{resumeSubHeadingList}
+
+%-----------PROJECTS-----------
+\section{Projects}
+\begin{resumeSubHeadingList}
+    \resumeProject{Voice-Based AI Assistant for Small Indian Retailers}{Flutter, Firebase, On-device LLM}{https://sai.fhaida.com/\#project-1}
+    \resumeProject{User-Friendly CRM for Real Estate Agents}{Flutter, Firebase, Node.js, AWS}{https://sai.fhaida.com/\#project-2}
+    \resumeProject{DishDash: Fitness Fueler \& Budget Buddy}{Flutter, Google OR-Tools, REST API}{https://sai.fhaida.com/\#project-3}
+    \resumeProject{Serverless UPI Payment Confirmation System}{Flutter, Background Services}{https://sai.fhaida.com/\#project-4}
+    \resumeProject{Post4Planet: Transforming Indian Postal Services}{Flutter, Firebase, AI, QR Systems}{https://sai.fhaida.com/\#project-5}
+    \resumeProject{Anu Civil - GeoExploratory Project Management}{Next.js, Flutter, Firebase}{https://sai.fhaida.com/\#project-6}
+    \resumeProject{Harit Parishar - Sustainability Empowerment App}{Flutter, Firebase, ML Kit, TensorFlow}{https://sai.fhaida.com/\#project-7}
+    \resumeProject{Institute Gate Management (QR Code System)}{Google Apps Script, Flutter, Django}{https://sai.fhaida.com/\#project-8}
+    \resumeProject{Unified Workplace Data System}{Google Apps Script, Webhooks, Chrome Extension}{https://sai.fhaida.com/\#project-10}
+    \resumeProject{Gaze-Controlled Video Player (Blink-to-Pause)}{Python, OpenCV, PyAutoGUI}{https://sai.fhaida.com/\#project-12}
+    \resumeProject{Retrieval-Augmented Assessment Recommender}{FastAPI, Streamlit, Supabase, Gemini}{https://sai.fhaida.com/\#project-14}
+    \resumeProject{Ultimate College Ranking Engine}{Next.js, FastAPI, NSGA-II}{https://sai.fhaida.com/\#project-18}
+\end{resumeSubHeadingList}
+
+%-----------ACHIEVEMENTS-----------
+\section{Achievements}
+\begin{resumeSubHeadingList}
+  \item{\textbf{NASSCOM Foundation's ThingQbator:} Top 10 Finalist; Project \textbf{AMYR} secured \textbf{Rs. 5 Lakh Seed Grant Funding} and mentorship. (\href{https://thingqbator.nasscomfoundation.org/main/programdetailview}{Link})}
+  \item{Won \textbf{1st Prize} in the \textbf{UDAAN 2023} Business Plan Competition (Rs. 25,000). (\href{https://drive.google.com/file/d/1woODQZURLzt9RRNwFlzw0onOX_-S1DaB/view}{Link})}
+  \item{Winner of \textbf{Smart India Hackathon 2024} (Rs. 1 Lakh) for the \textbf{ESG Post Office Initiative}. (\href{https://fhaida.medium.com/post4planet-transforming-indian-postal-services-4d4e6470c51e}{Link})}
+  \item{\textbf{Digital Marketing Manager at Aastee.com:} Generated 900+ leads via YouTube campaigns.}
+  \item{Won \textbf{1st Prize} at the \textbf{Codeiam Hackathon 2024} for "Smart CRM System in Google Sheets".}
+  \item{Finalist in multiple national and international hackathons. (\href{https://ssrao22.notion.site/}{Details})}
+\end{resumeSubHeadingList}
+
+%-----------SKILLS-----------
+\section{Skills}
+\begin{multicols}{3}
+    \begin{resumeSubHeadingList}
+        \resumeSubItem{Languages}{Java, C++, Python, Dart, JavaScript, SQL, HTML/CSS}
+        \resumeSubItem{Frontend}{React, React Native, Flutter, Next.js, Tailwind CSS}
+        \resumeSubItem{Backend}{Node.js, Django, Flask, Appwrite, Google Apps Script}
+        \resumeSubItem{Databases \& Cloud}{MongoDB, Firebase, SQLite, AWS, Docker}
+        \resumeSubItem{AI/ML}{TensorFlow, PyTorch, LLM Fine-tuning, RAG, OCR, CV}
+        \resumeSubItem{Design \& Media}{Blender, Maya, Adobe Suite (PS, AI, AE), UI/UX}
+        \resumeSubItem{Business}{Product Management, Digital Marketing, SEO, Research}
+        \resumeSubItem{Core Concepts}{Data Structures, Algorithms, OOP, DBMS, Networks}
+        \resumeSubItem{Soft Skills}{Leadership, Team Mentorship, Problem Solving}
+    \end{resumeSubHeadingList}
+\end{multicols}
+
+%-----------EXTRA-CURRICULAR-----------
+\section{Leadership \& Volunteering}
+\begin{resumeSubHeadingList}
+    \item{\textbf{General Secretary}, Science and Technical Council, RGIPT (2023-2024): Led technical initiatives and events.}
+    \item{\textbf{President}, ThingQbator Student Body, RGIPT (2022-2023): Headed innovation program, mentoring students.}
+    \item{\textbf{Active Member} in Entrepreneurship Cell, ACM, and CodeChef student chapters.}
+    \item{\textbf{Volunteer Teacher} for the Gyanapran Program, teaching STEM to rural students.}
+\end{resumeSubHeadingList}
+
+\end{document} 
