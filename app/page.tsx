@@ -57,11 +57,11 @@ export default async function Home() {
       </section>
       
       <section id="achievements" className="py-20">
-        <Achievements achievements={data.achievements} />
+        <Achievements />
       </section>
       
       <section id="contact" className="py-20">
-        <Contact profile={data.profile} />
+        <Contact />
       </section>
       
       <footer className="bg-slate-900 text-white py-8 text-center">
