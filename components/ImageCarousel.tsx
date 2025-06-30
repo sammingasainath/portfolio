@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface CarouselImage {
   src: string;
@@ -21,6 +22,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
   const [error, setError] = useState<string | null>(null);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const router = useRouter();
 
   // Load images from folder
   useEffect(() => {
@@ -41,7 +43,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
               const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - Image ${i}` });
               img.onerror = () => reject();
-              img.src = imagePath;
+              img.src = `${router.basePath}${imagePath}`;
             });
             imagePromises.push(imagePromise);
           }
@@ -56,7 +58,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
               const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - ${name}` });
               img.onerror = () => reject();
-              img.src = imagePath;
+              img.src = `${router.basePath}${imagePath}`;
             });
             imagePromises.push(imagePromise);
           }
@@ -85,7 +87,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
     };
 
     loadImagesFromFolder();
-  }, [folderPath, alt]);
+  }, [folderPath, alt, router.basePath]);
 
   // Navigation functions
   const goToPrevious = useCallback(() => {
