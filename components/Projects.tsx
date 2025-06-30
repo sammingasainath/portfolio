@@ -36,11 +36,11 @@ const getProjectThumbnail = (project: Project): string | null => {
   }
 
   const image = project.media.find(m => m.type === 'image' || m.type === 'thumbnail');
-  if (image && 'src' in image) return image.src;
+  if (image && 'src' in image) return image.src || null;
 
   // Fallback for any gallery if no image/thumbnail is found
   const gallery = project.media.find(m => m.type === 'gallery');
-  if (gallery && 'images' in gallery && gallery.images.length > 0) {
+  if (gallery && 'images' in gallery && gallery.images && gallery.images.length > 0) {
     return gallery.images[0];
   }
   

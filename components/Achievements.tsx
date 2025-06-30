@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import MediaRenderer from './MediaRenderer';
+import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 import achievementsData from '@/public/data/achievements.json';
 
@@ -23,11 +23,11 @@ const Achievements = () => {
     }
 
     const image = item.media.find(m => m.type === 'image' || m.type === 'thumbnail');
-    if (image && 'src' in image) return image.src;
+    if (image && 'src' in image) return image.src || null;
 
     // Fallback for any gallery if no image/thumbnail is found
     const gallery = item.media.find(m => m.type === 'gallery');
-    if (gallery && 'images' in gallery && gallery.images.length > 0) {
+    if (gallery && 'images' in gallery && gallery.images && gallery.images.length > 0) {
       return gallery.images[0];
     }
 
@@ -115,7 +115,7 @@ const Achievements = () => {
                 <div className="p-4">
                   <h4 className="font-bold text-white">{role.role}</h4>
                   <p className="text-sm text-purple-300">{role.organization}</p>
-                  <p className="text-xs text-gray-400 mt-1">{role.period}</p>
+                  <p className="text-xs text-gray-400 mt-1">{role.duration}</p>
                 </div>
               </div>
             ))}
@@ -168,7 +168,7 @@ const Achievements = () => {
                 {selectedItem.media && selectedItem.media.length > 0 && (
                   <div>
                     <h4 className="text-xl font-semibold text-white mt-6 mb-3">Media</h4>
-                    <MediaRenderer media={selectedItem.media} />
+                    <MediaRenderer media={selectedItem.media as MediaItem[]} />
                   </div>
                 )}
               </div>
