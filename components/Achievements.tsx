@@ -52,7 +52,7 @@ const Achievements = () => {
 
   const Card = ({ item }: { item: Achievement }) => {
     const thumbnailSrc = getThumbnail(item);
-    const { title, date, organization, description } = item;
+    const { title, date, organization, description, impact, project } = item;
 
     return (
       <div
@@ -77,6 +77,8 @@ const Achievements = () => {
         <div className="p-5">
           <p className="text-xs text-purple-300 uppercase tracking-wider">{organization} • {date}</p>
           <h3 className="text-white font-bold text-xl mt-2 mb-2">{title}</h3>
+          {project && <p className="text-sm text-purple-200 mb-2">Project: {project}</p>}
+          {impact && <p className="text-sm font-semibold text-green-300 mb-3">Impact: {impact}</p>}
           <p className="text-gray-400 text-sm">{description}</p>
         </div>
       </div>
@@ -161,6 +163,14 @@ const Achievements = () => {
                 <h3 className="text-2xl font-bold text-white pr-8">
                   {'title' in selectedItem ? selectedItem.title : 'role' in selectedItem ? selectedItem.role : selectedItem.activity}
                 </h3>
+
+                {'project' in selectedItem && selectedItem.project && (
+                  <p className="text-purple-300">Project: {selectedItem.project}</p>
+                )}
+                {'impact' in selectedItem && selectedItem.impact && (
+                  <p className="text-green-300 font-semibold">Impact: {selectedItem.impact}</p>
+                )}
+
                 <p className='text-gray-300 text-sm'>
                   {'description' in selectedItem && selectedItem.description}
                 </p>

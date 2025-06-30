@@ -149,10 +149,21 @@ const Experience = ({ experience }: ExperienceProps) => {
 
                       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-96 mt-3' : 'max-h-0'}`}>
                         <p className="text-gray-300 text-sm mb-3">{exp.description}</p>
+
+                        {exp.achievements && exp.achievements.length > 0 && (
+                          <div className="mb-3">
+                            <h5 className="text-white font-semibold text-sm mb-2">Key Achievements:</h5>
+                            <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+                              {exp.achievements.slice(0, 2).map((ach, i) => <li key={i}>{ach}</li>)}
+                              {exp.achievements.length > 2 && <li>+{exp.achievements.length - 2} more...</li>}
+                            </ul>
+                          </div>
+                        )}
+
                         <h5 className="text-white font-semibold text-sm mb-2">Key Responsibilities:</h5>
                         <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
-                          {exp.responsibilities.slice(0, 3).map((resp, i) => <li key={i}>{resp}</li>)}
-                          {exp.responsibilities.length > 3 && <li>+{exp.responsibilities.length - 3} more...</li>}
+                          {exp.responsibilities.slice(0, 2).map((resp, i) => <li key={i}>{resp}</li>)}
+                          {exp.responsibilities.length > 2 && <li>+{exp.responsibilities.length - 2} more...</li>}
                         </ul>
                       </div>
                     </div>
