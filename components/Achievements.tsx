@@ -121,14 +121,14 @@ const Achievements = ({ achievements }: AchievementsProps) => {
         className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer"
         onClick={() => hasMedia(item) ? openModal(item) : undefined}
       >
-        <div className="h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center overflow-hidden">
+        <div className="h-48 bg-black/20 flex items-center justify-center overflow-hidden">
           {thumbnailSrc ? (
             <Image
               src={thumbnailSrc}
               alt={`${title} thumbnail`}
               width={400}
               height={400}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
             <div className="text-6xl text-purple-400/50">
@@ -184,11 +184,11 @@ const Achievements = ({ achievements }: AchievementsProps) => {
                 className={`bg-white/10 rounded-lg p-6 flex items-start gap-4 transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
                 onClick={() => hasMedia(role) ? openModal(role) : undefined}
               >
-              <div className="w-16 h-16 rounded-lg bg-purple-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <div className="w-24 h-24 rounded-lg bg-purple-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 {getThumbnail(role) ? (
-                  <Image src={getThumbnail(role)!} alt={`${role.role} thumbnail`} width={64} height={64} className="w-full h-full object-cover"/>
+                  <Image src={getThumbnail(role)!} alt={`${role.role} thumbnail`} width={96} height={96} className="w-full h-full object-cover"/>
                 ) : (
-                  <svg className="w-8 h-8 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <svg className="w-12 h-12 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                 )}
               </div>
               <div>
@@ -211,11 +211,11 @@ const Achievements = ({ achievements }: AchievementsProps) => {
               className={`bg-white/10 rounded-lg p-4 flex items-center gap-4 transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}
               onClick={() => hasMedia(activity) ? openModal(activity) : undefined}
             >
-              <div className="w-12 h-12 rounded-full bg-pink-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <div className="w-20 h-20 rounded-lg bg-pink-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 {getThumbnail(activity) ? (
-                  <Image src={getThumbnail(activity)!} alt={`${activity.activity} thumbnail`} width={48} height={48} className="w-full h-full object-cover"/>
+                  <Image src={getThumbnail(activity)!} alt={`${activity.activity} thumbnail`} width={80} height={80} className="w-full h-full object-cover"/>
                 ) : (
-                  <svg className="w-6 h-6 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                  <svg className="w-10 h-10 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                 )}
               </div>
               <div>

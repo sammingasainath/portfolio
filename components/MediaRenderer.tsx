@@ -79,12 +79,16 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
               );
             }
             return (
-              <ImageCarousel
-                key={index}
-                images={item.images}
-                alt={item.alt}
-                title={item.title}
-              />
+              <div key={index} className="space-y-4">
+                <ImageCarousel
+                  images={item.images}
+                  alt={item.alt}
+                  title={item.title}
+                />
+                <div className="text-center p-3 bg-black/20 rounded-lg">
+                  <p className="text-sm text-gray-200">{item.alt}</p>
+                </div>
+              </div>
             );
           default:
             return null;

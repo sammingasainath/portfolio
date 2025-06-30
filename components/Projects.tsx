@@ -190,13 +190,13 @@ const Projects = ({ projects }: ProjectsProps) => {
           <div className="text-center">
             <button
               onClick={() => setShowNonFeatured(!showNonFeatured)}
-              className="text-purple-400 hover:text-purple-300 transition-colors"
+              className="px-6 py-3 bg-white/5 border border-purple-400/30 text-purple-300 rounded-lg hover:bg-purple-500/10 hover:border-purple-400/60 transition-all duration-300 shadow-lg"
             >
               {showNonFeatured ? 'Hide Other Projects' : `Show ${nonFeaturedProjects.length} Other Projects`}
             </button>
           </div>
           {showNonFeatured && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8">
               {nonFeaturedProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
