@@ -84,6 +84,8 @@ const Achievements = () => {
       </div>
     );
   };
+
+  // Leadership
   
   return (
     <section id="achievements" className="py-20">
