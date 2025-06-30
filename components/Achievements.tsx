@@ -50,18 +50,6 @@ const Achievements = ({ achievements }: AchievementsProps) => {
   const [modalType, setModalType] = useState<'achievement' | 'leadership' | 'volunteering' | null>(null);
   const [thumbnailCache, setThumbnailCache] = useState<Record<string, string>>({});
 
-  const getCategoryIcon = (category: string) => {
-    const iconMap: { [key: string]: string } = {
-      'Competition/Funding': 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
-      'Competition': 'M13 10V3L4 14h7v7l9-11h-7z',
-      'Hackathon': 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
-      'Professional Achievement': 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V6m8 0V4a2 2 0 00-2-2H10a2 2 0 00-2 2v2'
-    };
-    return iconMap[category] || 'M13 10V3L4 14h7v7l9-11h-7z';
-  };
-
-
-
   const openModal = (item: Achievement | Leadership | Volunteering, type: 'achievement' | 'leadership' | 'volunteering') => {
     setSelectedItem(item);
     setModalType(type);

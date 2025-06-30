@@ -76,7 +76,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
         } else {
           setImages(loadedImages);
         }
-      } catch (err) {
+      } catch {
         setError('Failed to load images from folder');
       } finally {
         setLoading(false);

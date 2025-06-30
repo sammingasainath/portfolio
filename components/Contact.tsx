@@ -21,30 +21,6 @@ interface ContactProps {
 }
 
 const Contact = ({ profile }: ContactProps) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Create mailto link with form data
-    const subject = encodeURIComponent(formData.subject || 'Portfolio Contact');
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:${profile.contact.email}?subject=${subject}&body=${body}`;
-  };
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
@@ -53,7 +29,7 @@ const Contact = ({ profile }: ContactProps) => {
         </h2>
         <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-6"></div>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-          Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+          Have a project in mind or want to discuss opportunities? I&apos;d love to hear from you!
         </p>
       </div>
 
@@ -154,7 +130,7 @@ const Contact = ({ profile }: ContactProps) => {
         {/* --- REPLACED FORM WITH WHATSAPP BUTTON --- */}
         <div className="lg:col-span-2">
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 flex flex-col items-center justify-center text-center h-full">
-            <h3 className="text-2xl font-bold text-white mb-4">Let's Connect!</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Let&apos;s Connect!</h3>
             <p className="text-gray-300 mb-8 max-w-sm">
               The quickest way to reach me is via WhatsApp. Click the button below to start a chat instantly.
             </p>
