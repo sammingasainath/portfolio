@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import MediaRenderer, { MediaItem } from './MediaRenderer';
+import { useState } from 'react';
+import MediaRenderer from './MediaRenderer';
 import Image from 'next/image';
 import achievementsData from '@/public/data/achievements.json';
 
