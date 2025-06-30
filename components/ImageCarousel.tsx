@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 interface CarouselImage {
   src: string;
@@ -185,9 +186,11 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <img
+          <Image
             src={images[currentIndex].src}
             alt={images[currentIndex].alt}
+            width={896}
+            height={504}
             className="w-full h-full object-contain bg-black/10"
             loading="lazy"
           />
@@ -255,9 +258,11 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
                   : 'border-white/20 hover:border-white/40'
               }`}
             >
-              <img
+              <Image
                 src={image.src}
                 alt={image.alt}
+                width={64}
+                height={64}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
+import Image from 'next/image';
 
 interface ProjectMedia extends MediaItem {
   title?: string; // Optional title for gallery sections
@@ -312,10 +313,12 @@ const Projects = ({ projects }: ProjectsProps) => {
                     const thumbnail = getProjectThumbnail(project);
                     if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                       return (
-                        <img
+                        <Image
                           src={thumbnail.src}
                           alt={thumbnail.alt}
-                          className="w-full h-full object-cover"
+                          width={400}
+                          height={400}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           onError={createThumbnailErrorHandler(project)}
                         />
                       );
@@ -432,10 +435,12 @@ const Projects = ({ projects }: ProjectsProps) => {
                       const thumbnail = getProjectThumbnail(project);
                       if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                         return (
-                          <img
+                          <Image
                             src={thumbnail.src}
                             alt={thumbnail.alt}
-                            className="w-full h-full object-cover"
+                            width={400}
+                            height={400}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             onError={createThumbnailErrorHandler(project)}
                           />
                         );
@@ -488,10 +493,12 @@ const Projects = ({ projects }: ProjectsProps) => {
                   const thumbnail = getProjectThumbnail(project);
                   if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                     return (
-                      <img
+                      <Image
                         src={thumbnail.src}
                         alt={thumbnail.alt}
-                        className="w-full h-full object-cover"
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         onError={createThumbnailErrorHandler(project)}
                       />
                     );

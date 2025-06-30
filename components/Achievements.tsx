@@ -1,7 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import MediaRenderer, { MediaItem } from './MediaRenderer';
+import MediaRenderer from './MediaRenderer';
+import ImageCarousel from './ImageCarousel';
+import type { StaticImageData } from 'next/image';
+import Image from 'next/image';
+
+interface MediaItem {
+  type: 'image' | 'video' | 'gallery' | 'thumbnail';
+  src: string;
+  alt: string;
+}
 
 interface Achievement {
   id: number;
@@ -244,9 +253,11 @@ const Achievements = ({ achievements }: AchievementsProps) => {
                   const thumbnail = getThumbnail(achievement);
                   if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                     return (
-                      <img
+                      <Image
                         src={thumbnail.src}
                         alt={thumbnail.alt}
+                        width={400}
+                        height={400}
                         className="w-full h-full object-contain"
                         onError={createThumbnailErrorHandler(achievement)}
                       />
@@ -324,9 +335,11 @@ const Achievements = ({ achievements }: AchievementsProps) => {
                   const thumbnail = getThumbnail(achievement);
                   if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                     return (
-                      <img
+                      <Image
                         src={thumbnail.src}
                         alt={thumbnail.alt}
+                        width={400}
+                        height={400}
                         className="w-full h-full object-contain"
                         onError={createThumbnailErrorHandler(achievement)}
                       />
@@ -390,9 +403,11 @@ const Achievements = ({ achievements }: AchievementsProps) => {
                     const thumbnail = getThumbnail(role);
                     if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                       return (
-                        <img
+                        <Image
                           src={thumbnail.src}
                           alt={thumbnail.alt}
+                          width={400}
+                          height={400}
                           className="w-full h-full object-contain"
                           onError={createThumbnailErrorHandler(role)}
                         />
@@ -440,9 +455,11 @@ const Achievements = ({ achievements }: AchievementsProps) => {
                     const thumbnail = getThumbnail(activity);
                     if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                       return (
-                        <img
+                        <Image
                           src={thumbnail.src}
                           alt={thumbnail.alt}
+                          width={400}
+                          height={400}
                           className="w-full h-full object-contain"
                           onError={createThumbnailErrorHandler(activity)}
                         />

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface SkillItem {
   name: string;
@@ -94,9 +95,11 @@ const SkillCard = ({ category, index, isExpanded, onToggle, getIconForCategory, 
                 className="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30 hover:bg-purple-500/30 hover:text-white transition-all duration-200"
               >
                 {skillLogo && (
-                  <img
+                  <Image
                     src={skillLogo}
                     alt={`${skillName} logo`}
+                    width={16}
+                    height={16}
                     className="w-4 h-4 object-contain"
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';

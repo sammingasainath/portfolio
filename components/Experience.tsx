@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
+import ImageCarousel from './ImageCarousel';
+import Image from 'next/image';
 
 interface ExperienceItem {
   id: number;
@@ -228,10 +230,12 @@ const Experience = ({ experience }: ExperienceProps) => {
                         const thumbnail = getThumbnail(exp);
                         if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                           return (
-                            <img
+                            <Image
                               src={thumbnail.src}
                               alt={thumbnail.alt}
-                              className="w-full h-full object-contain"
+                              width={128}
+                              height={128}
+                              className="w-full h-full object-cover"
                               onError={createThumbnailErrorHandler(exp)}
                             />
                           );

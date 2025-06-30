@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 interface ProfileData {
   name: string;
@@ -55,9 +57,11 @@ const Hero = ({ profile }: HeroProps) => {
         <div className="text-center">
           <div className="mx-auto mb-8 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 hover:scale-105">
             {profile.profilePicture ? (
-              <img
+              <Image
                 src={profile.profilePicture}
                 alt={profile.name}
+                width={200}
+                height={200}
                 className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700 ease-out"
                 style={{ objectPosition: 'center 25%' }}
               />
