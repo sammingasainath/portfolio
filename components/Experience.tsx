@@ -219,38 +219,24 @@ const Experience = ({ experience }: ExperienceProps) => {
                 
                 {/* Content */}
                 <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl flex flex-col sm:flex-row overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300">
                     {/* Image Thumbnail */}
-                    <div
-                      className="absolute left-0 top-0 h-full w-48 flex-shrink-0"
-                      onClick={() => openModal(exp)}
+                    <div 
+                      onClick={() => hasMedia(exp) && openModal(exp)}
+                      className={`w-full sm:w-1/3 h-48 sm:h-auto bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center shrink-0 overflow-hidden ${hasMedia(exp) ? 'cursor-pointer' : ''}`}
                     >
                       {(() => {
                         const thumbnail = getThumbnail(exp);
                         if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                           return (
-                            <div className="h-full w-full relative group cursor-pointer">
-                              <Image
-                                src={thumbnail.src}
-                                alt={thumbnail.alt}
-                                width={192}
-                                height={192}
-                                className="w-full h-full object-cover"
-                                onError={createThumbnailErrorHandler(exp)}
-                              />
-                              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
-                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                <svg
-                                  className="w-6 h-6 text-purple-400 cursor-pointer hover:text-pink-400 transition-colors duration-300"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                              </div>
-                            </div>
+                            <Image
+                              src={thumbnail.src}
+                              alt={thumbnail.alt}
+                              width={200}
+                              height={200}
+                              className="w-full h-full object-cover"
+                              onError={createThumbnailErrorHandler(exp)}
+                            />
                           );
                         } else {
                           return (
@@ -262,110 +248,31 @@ const Experience = ({ experience }: ExperienceProps) => {
                       })()}
                     </div>
                     
-                    {/* Header - Always Visible */}
-                    <button
-                      onClick={() => toggleExperience(index)}
-                      className="w-full p-6 text-left focus:outline-none"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <h3 className="text-xl font-bold text-white">{exp.position}</h3>
-                            {hasMedia(exp) && (
-                              <svg
-                                className="w-6 h-6 text-purple-400 cursor-pointer hover:text-pink-400 transition-colors duration-300"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  openModal(exp);
-                                }}
-                              >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                              </svg>
-                            )}
+                    {/* Main Content */}
+                    <div className="p-6 w-full sm:w-2/3">
+                      <button 
+                        onClick={() => toggleExperience(index)}
+                        className="w-full text-left"
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                            <h4 className="text-lg font-bold text-white">{exp.position}</h4>
+                            <p className="text-purple-300 text-sm">{exp.company}</p>
                           </div>
-                          <h4 className="text-lg text-purple-400 mb-2">{exp.company}</h4>
-                          <div className="flex flex-wrap gap-2 text-sm text-gray-400 mb-2">
-                            <span>{exp.location}</span>
-                            <span>•</span>
-                            <span>{exp.type}</span>
-                            {exp.current && <span className="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">Current</span>}
-                          </div>
-                          <p className="text-purple-300 text-sm">{exp.duration}</p>
+                          <svg className={`w-5 h-5 text-purple-400 transition-transform duration-300 shrink-0 ml-2 ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
                         </div>
-                        <svg
-                          className={`w-5 h-5 text-purple-400 transition-transform duration-300 ${
-                            isExpanded ? 'rotate-180' : ''
-                          }`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </button>
-                    
-                    {/* Collapsible Content */}
-                    <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                      isExpanded
-                        ? 'max-h-[800px] opacity-100 pb-6' 
-                        : 'max-h-0 opacity-0'
-                    }`}>
-                      <div className="px-6">
-                        <p className="text-gray-300 mb-4">{exp.description}</p>
-                        
-                        {exp.responsibilities && exp.responsibilities.length > 0 && (
-                          <div className="mb-4">
-                            <h5 className="text-white font-semibold mb-2">Key Responsibilities:</h5>
-                            <ul className="space-y-1">
-                              {exp.responsibilities.slice(0, 3).map((resp, idx) => (
-                                <li key={idx} className="text-gray-300 text-sm flex items-start">
-                                  <span className="text-purple-400 mr-2 mt-1.5">•</span>
-                                  {resp}
-                                </li>
-                              ))}
-                              {exp.responsibilities.length > 3 && (
-                                <li className="text-purple-400 text-sm italic">
-                                  +{exp.responsibilities.length - 3} more responsibilities...
-                                </li>
-                              )}
-                            </ul>
-                          </div>
-                        )}
-                        
-                        {exp.achievements && exp.achievements.length > 0 && (
-                          <div className="mb-4">
-                            <h5 className="text-white font-semibold mb-2">Key Achievements:</h5>
-                            <ul className="space-y-1">
-                              {exp.achievements.slice(0, 2).map((achievement, idx) => (
-                                <li key={idx} className="text-gray-300 text-sm flex items-start">
-                                  <span className="text-pink-400 mr-2 mt-1.5">★</span>
-                                  {achievement}
-                                </li>
-                              ))}
-                              {exp.achievements.length > 2 && (
-                                <li className="text-purple-400 text-sm italic">
-                                  +{exp.achievements.length - 2} more achievements...
-                                </li>
-                              )}
-                            </ul>
-                          </div>
-                        )}
-                        
-                        <div className="flex flex-wrap gap-2">
-                          {exp.technologies.map((tech, idx) => (
-                            <span
-                              key={idx}
-                              className="px-2 py-1 bg-purple-500/20 text-purple-300 rounded text-xs border border-purple-500/30"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
+                        <p className="text-gray-400 text-xs mb-3">{exp.duration} • {exp.type} • {exp.location}</p>
+                      </button>
+
+                      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-96 mt-3' : 'max-h-0'}`}>
+                        <p className="text-gray-300 text-sm mb-3">{exp.description}</p>
+                        <h5 className="text-white font-semibold text-sm mb-2">Key Responsibilities:</h5>
+                        <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+                          {exp.responsibilities.slice(0, 3).map((resp, i) => <li key={i}>{resp}</li>)}
+                          {exp.responsibilities.length > 3 && <li>+{exp.responsibilities.length - 3} more...</li>}
+                        </ul>
                       </div>
                     </div>
                   </div>

@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { prefixPath } from '@/lib/path-helper';
 
 interface CarouselImage {
   src: string;
@@ -23,7 +21,6 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
   const [error, setError] = useState<string | null>(null);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
-  const router = useRouter();
 
   // Load images from folder
   useEffect(() => {
@@ -32,23 +29,21 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
         setLoading(true);
         setError(null);
         
+        // Common image extensions
         const imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'];
         const imagePromises: Promise<CarouselImage>[] = [];
         
-        const checkPath = (path: string, altText: string) => {
-          return new Promise<CarouselImage>((resolve, reject) => {
-            const img = new window.Image();
-            img.onload = () => resolve({ src: path, alt: altText });
-            img.onerror = () => reject();
-            img.src = prefixPath(path);
-          });
-        };
-
         // Try to load images with common naming patterns (1.jpg, 2.jpg, etc.)
         for (let i = 1; i <= 20; i++) {
           for (const ext of imageExtensions) {
-            imagePromises.push(checkPath(`${folderPath}/${i}.${ext.toLowerCase()}`, `${alt} - Image ${i}`));
-            imagePromises.push(checkPath(`${folderPath}/${i}.${ext.toUpperCase()}`, `${alt} - Image ${i}`));
+            const imagePath = `${folderPath}/${i}.${ext}`;
+            const imagePromise = new Promise<CarouselImage>((resolve, reject) => {
+              const img = new window.Image();
+              img.onload = () => resolve({ src: imagePath, alt: `${alt} - Image ${i}` });
+              img.onerror = () => reject();
+              img.src = imagePath;
+            });
+            imagePromises.push(imagePromise);
           }
         }
         
@@ -56,8 +51,14 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
         const commonNames = ['screenshot', 'demo', 'preview', 'main', 'hero', 'thumb'];
         for (const name of commonNames) {
           for (const ext of imageExtensions) {
-            imagePromises.push(checkPath(`${folderPath}/${name}.${ext.toLowerCase()}`, `${alt} - ${name}`));
-            imagePromises.push(checkPath(`${folderPath}/${name}.${ext.toUpperCase()}`, `${alt} - ${name}`));
+            const imagePath = `${folderPath}/${name}.${ext}`;
+            const imagePromise = new Promise<CarouselImage>((resolve, reject) => {
+              const img = new window.Image();
+              img.onload = () => resolve({ src: imagePath, alt: `${alt} - ${name}` });
+              img.onerror = () => reject();
+              img.src = imagePath;
+            });
+            imagePromises.push(imagePromise);
           }
         }
         
@@ -84,7 +85,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
     };
 
     loadImagesFromFolder();
-  }, [folderPath, alt, router.basePath]);
+  }, [folderPath, alt]);
 
   // Navigation functions
   const goToPrevious = useCallback(() => {

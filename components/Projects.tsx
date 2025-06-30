@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
-import { prefixPath } from '@/lib/path-helper';
 
 interface ProjectMedia extends MediaItem {
   title?: string; // Optional title for gallery sections
@@ -46,7 +45,7 @@ const findFirstExistingImage = (urls: string[]): Promise<string | null> => {
         idx += 1;
         tryNext();
       };
-      testImg.src = prefixPath(urls[idx]);
+      testImg.src = urls[idx];
     };
     tryNext();
   });
