@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 import achievementsData from '@/public/data/achievements.json';
@@ -12,7 +12,7 @@ type Volunteering = (typeof achievementsData.volunteering)[0];
 const Achievements = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Achievement | Leadership | Volunteering | null>(null);
-  const { achievements } = achievementsData;
+  const { achievements, leadership, volunteering } = achievementsData;
 
   const getThumbnail = (item: Achievement | Leadership | Volunteering): string | null => {
     if (!item.media || item.media.length === 0) return null;
@@ -38,17 +38,57 @@ const Achievements = () => {
     return !!item.media && item.media.length > 0;
   };
 
-  const openModal = (item: Achievement | Leadership | Volunteering) => {
+  const openModal = useCallback((item: Achievement | Leadership | Volunteering) => {
     if (hasMedia(item)) {
       setSelectedItem(item);
       setModalOpen(true);
+      document.body.style.overflow = 'hidden';
     }
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setModalOpen(false);
     setSelectedItem(null);
-  };
+    document.body.style.overflow = 'auto';
+    if (window.location.hash) {
+      window.history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [closeModal]);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+  
+    const parts = hash.substring(1).split('-');
+    const type = parts[0];
+    const id = parseInt(parts[1], 10);
+  
+    if (!type || isNaN(id)) return;
+  
+    let itemToOpen: Achievement | Leadership | Volunteering | undefined;
+  
+    if (type === 'achievement') {
+      itemToOpen = achievements.find(item => item.id === id);
+    } else if (type === 'leadership') {
+      itemToOpen = leadership.find(item => item.id === id);
+    } else if (type === 'volunteer') {
+      itemToOpen = volunteering.find(item => item.id === id);
+    }
+  
+    if (itemToOpen) {
+      openModal(itemToOpen);
+    }
+  }, [achievements, leadership, volunteering, openModal]);
 
   const Card = ({ item }: { item: Achievement }) => {
     const thumbnailSrc = getThumbnail(item);
@@ -103,7 +143,7 @@ const Achievements = () => {
         <div className="mb-16">
           <h3 className="text-2xl font-bold text-white mb-8 text-center">Leadership & Public Speaking</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {achievementsData.leadership.map((role) => (
+            {leadership.map((role) => (
                <div 
                   key={role.id}
                   className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
@@ -129,7 +169,7 @@ const Achievements = () => {
         <div>
           <h3 className="text-2xl font-bold text-white mb-8 text-center">Volunteering</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {achievementsData.volunteering.map((activity) => (
+            {volunteering.map((activity) => (
               <div
                 key={activity.id}
                 className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 
@@ -71,13 +71,39 @@ const Experience = ({ experience }: ExperienceProps) => {
     setExpandedExperienceIndex(prevIndex => (prevIndex === index ? null : index));
   };
 
-  const openModal = (exp: ExperienceItem) => {
+  const openModal = useCallback((exp: ExperienceItem) => {
     setSelectedExperience(exp);
-  };
+    document.body.style.overflow = 'hidden';
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedExperience(null);
-  };
+    document.body.style.overflow = 'auto';
+    if (window.location.hash) {
+      window.history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [closeModal]);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.startsWith('#experience-')) {
+      const experienceId = parseInt(hash.substring('#experience-'.length), 10);
+      const experienceToOpen = experience.experiences.find(e => e.id === experienceId);
+      if (experienceToOpen && hasMedia(experienceToOpen)) {
+        openModal(experienceToOpen);
+      }
+    }
+  }, [experience, openModal]);
 
   const hasMedia = (exp: ExperienceItem): boolean => {
     return !!(exp.media && exp.media.length > 0);
