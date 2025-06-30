@@ -78,7 +78,7 @@ const Achievements = () => {
           <p className="text-xs text-purple-300 uppercase tracking-wider">{organization} • {date}</p>
           <h3 className="text-white font-bold text-xl mt-2 mb-2">{title}</h3>
           {project && <p className="text-sm text-purple-200 mb-2">Project: {project}</p>}
-          {impact && <p className="text-sm font-semibold text-green-300 mb-3">Impact: {impact}</p>}
+          {impact && <p className="text-sm font-semibold text-green-300 mb-3">{impact}</p>}
           <p className="text-gray-400 text-sm">{description}</p>
         </div>
       </div>
