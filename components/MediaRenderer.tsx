@@ -92,6 +92,7 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
             );
           default:
             // Ensure exhaustive check
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const _exhaustiveCheck: never = item;
             return null;
         }
