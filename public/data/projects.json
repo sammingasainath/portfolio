@@ -374,11 +374,7 @@
       "sourceCodeUrl": "",
       "featured": false,
       "media": [
-        {
-          "type": "thumbnail",
-          "src": "https://img.youtube.com/vi/HSLPWnwRsAk/hqdefault.jpg",
-          "alt": "Institute Gate Management QR Code System thumbnail"
-        },
+       
         {
           "type": "video",
           "src": "https://www.youtube.com/watch?v=HSLPWnwRsAk",
