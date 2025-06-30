@@ -12,7 +12,7 @@ export interface GalleryItem {
 }
 
 export type MediaItem = 
-  | { type: 'image' | 'video' | 'thumbnail'; src: string; alt: string; title?: string }
+  | { type: 'image' | 'video' | 'thumbnail' | 'iframe'; src: string; alt: string; title?: string }
   | GalleryItem;
 
 interface MediaRendererProps {
@@ -63,34 +63,36 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
               );
             }
             // Fallback for other video types
-            return (
-              <video key={index} controls src={item.src} className="w-full h-auto rounded-lg shadow-lg">
-                {item.alt}
-              </video>
-            );
+            return <video key={index} src={item.src} title={item.alt} controls className="w-full rounded-lg" />;
           case 'gallery':
-            // Ensure item.images is an array to prevent crashes
-            if (!Array.isArray(item.images)) {
-              console.error('MediaRenderer: Gallery item is missing "images" array.', item);
-              return (
-                <div key={index} className="text-red-400">
-                  Error: Gallery data is invalid.
-                </div>
-              );
-            }
             return (
-              <div key={index} className="space-y-4">
+              <div key={index} className="space-y-2">
+                <div className="text-center p-2">
+                    <p className="font-bold text-white">{item.alt}</p>
+                </div>
                 <ImageCarousel
                   images={item.images}
                   alt={item.alt}
                   title={item.title}
                 />
-                <div className="text-center p-3 bg-black/20 rounded-lg">
-                  <p className="text-sm text-gray-200">{item.alt}</p>
-                </div>
+              </div>
+            );
+          case 'iframe':
+            return (
+              <div key={index} className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                  src={item.src}
+                  title={item.alt}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                ></iframe>
               </div>
             );
           default:
+            // Ensure exhaustive check
+            const _exhaustiveCheck: never = item;
             return null;
         }
       })}
