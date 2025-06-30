@@ -1,60 +1,83 @@
 'use client';
 
 import Image from 'next/image';
+import ImageCarousel from './ImageCarousel';
 
 export interface MediaItem {
   type: 'image' | 'video' | 'gallery' | 'thumbnail';
   src: string;
   alt: string;
+  title?: string;
 }
 
 interface MediaRendererProps {
-  media: MediaItem;
+  media: MediaItem | MediaItem[];
   className?: string;
 }
 
 const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
-  switch (media.type) {
-    case 'image':
-    case 'thumbnail':
-      return (
-        <div className={className}>
-          <Image
-            src={media.src}
-            alt={media.alt}
-            width={800}
-            height={600}
-            className="w-full h-auto rounded-lg shadow-lg"
-            loading="lazy"
-          />
-        </div>
-      );
-    case 'video':
-      const isYouTube = media.src.includes('youtube.com') || media.src.includes('youtu.be');
-      if (isYouTube) {
-        const videoId = new URL(media.src).searchParams.get('v') || media.src.split('/').pop();
-        return (
-          <div className={`relative w-full aspect-video rounded-lg overflow-hidden ${className}`}>
-            <iframe
-              src={`https://www.youtube.com/embed/${videoId}`}
-              title={media.alt}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            ></iframe>
-          </div>
-        );
-      }
-      // Fallback for other video types
-      return (
-        <video controls src={media.src} className={`w-full h-auto rounded-lg ${className}`}>
-          {media.alt}
-        </video>
-      );
-    default:
-      return null;
-  }
+  const mediaItems = Array.isArray(media) ? media : [media];
+
+  return (
+    <div className={`space-y-6 ${className}`}>
+      {mediaItems.map((item, index) => {
+        switch (item.type) {
+          case 'image':
+          case 'thumbnail':
+            return (
+              <div key={index} className="rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+            );
+          case 'video':
+            const isYouTube = item.src.includes('youtube.com') || item.src.includes('youtu.be');
+            if (isYouTube) {
+              const videoIdMatch = item.src.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+              const videoId = videoIdMatch ? videoIdMatch[1] : null;
+
+              if (!videoId) return <p key={index} className='text-red-400'>Invalid YouTube URL</p>;
+
+              return (
+                <div key={index} className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoId}`}
+                    title={item.alt}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
+              );
+            }
+            // Fallback for other video types
+            return (
+              <video key={index} controls src={item.src} className="w-full h-auto rounded-lg shadow-lg">
+                {item.alt}
+              </video>
+            );
+          case 'gallery':
+            return (
+              <ImageCarousel
+                key={index}
+                folderPath={item.src}
+                alt={item.alt}
+                title={item.title}
+              />
+            );
+          default:
+            return null;
+        }
+      })}
+    </div>
+  );
 };
 
 export default MediaRenderer;

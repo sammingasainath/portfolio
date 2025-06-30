@@ -29,6 +29,9 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
         setLoading(true);
         setError(null);
         
+        // Handle URL encoding for paths with spaces
+        const encodedFolderPath = folderPath.split('/').map(segment => encodeURIComponent(segment)).join('/');
+
         // Common image extensions
         const imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'];
         const imagePromises: Promise<CarouselImage>[] = [];
@@ -36,7 +39,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
         // Try to load images with common naming patterns (1.jpg, 2.jpg, etc.)
         for (let i = 1; i <= 20; i++) {
           for (const ext of imageExtensions) {
-            const imagePath = `${folderPath}/${i}.${ext}`;
+            const imagePath = `${encodedFolderPath}/${i}.${ext}`;
             const imagePromise = new Promise<CarouselImage>((resolve, reject) => {
               const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - Image ${i}` });
@@ -51,7 +54,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
         const commonNames = ['screenshot', 'demo', 'preview', 'main', 'hero', 'thumb'];
         for (const name of commonNames) {
           for (const ext of imageExtensions) {
-            const imagePath = `${folderPath}/${name}.${ext}`;
+            const imagePath = `${encodedFolderPath}/${name}.${ext}`;
             const imagePromise = new Promise<CarouselImage>((resolve, reject) => {
               const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - ${name}` });
@@ -160,7 +163,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p className="text-sm">{error || 'No images found'}</p>
-          <p className="text-xs text-gray-500 mt-1">Folder: {folderPath}</p>
+          <p className="text-xs text-gray-500 mt-1">Attempted folder: {folderPath}</p>
         </div>
       </div>
     );
