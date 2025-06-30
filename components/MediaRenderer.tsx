@@ -30,15 +30,20 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
           case 'image':
           case 'thumbnail':
             return (
-              <div key={index} className="rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  width={800}
-                  height={600}
-                  className="w-full h-auto"
-                  loading="lazy"
-                />
+              <div key={index} className="space-y-2">
+                <div className="text-center p-2">
+                    <p className="font-bold text-white">{item.title || item.alt}</p>
+                </div>
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={800}
+                    height={600}
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             );
           case 'video':
@@ -50,20 +55,32 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
               if (!videoId) return <p key={index} className='text-red-400'>Invalid YouTube URL</p>;
 
               return (
-                <div key={index} className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${videoId}`}
-                    title={item.alt}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
+                <div key={index} className="space-y-2">
+                   <div className="text-center p-2">
+                    <p className="font-bold text-white">{item.title || item.alt}</p>
+                  </div>
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      title={item.alt}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
                 </div>
               );
             }
             // Fallback for other video types
-            return <video key={index} src={item.src} title={item.alt} controls className="w-full rounded-lg" />;
+            return (
+              <div key={index} className="space-y-2">
+                <div className="text-center p-2">
+                  <p className="font-bold text-white">{item.title || item.alt}</p>
+                </div>
+                <video src={item.src} title={item.alt} controls className="w-full rounded-lg" />
+              </div>
+            );
           case 'gallery':
             return (
               <div key={index} className="space-y-2">
@@ -79,15 +96,20 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
             );
           case 'iframe':
             return (
-              <div key={index} className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-                <iframe
-                  src={item.src}
-                  title={item.alt}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
-                ></iframe>
+              <div key={index} className="space-y-2">
+                <div className="text-center p-2">
+                    <p className="font-bold text-white">{item.title || item.alt}</p>
+                </div>
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src={item.src}
+                    title={item.alt}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
               </div>
             );
           default:
