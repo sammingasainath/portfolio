@@ -95,7 +95,7 @@ const Experience = ({ experience }: ExperienceProps) => {
   }, [closeModal]);
 
   useEffect(() => {
-    const handleHashChange = () => {
+    const processHash = () => {
       const hash = window.location.hash;
       if (hash.startsWith('#experience-')) {
         const experienceId = parseInt(hash.substring('#experience-'.length), 10);
@@ -106,15 +106,14 @@ const Experience = ({ experience }: ExperienceProps) => {
       }
     };
   
-    // Check hash on initial load
-    handleHashChange();
+    // Delay to ensure the app is hydrated and ready
+    const timer = setTimeout(processHash, 100);
   
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', processHash);
   
-    // Cleanup listener
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', processHash);
     };
   }, [experience, openModal]);
 

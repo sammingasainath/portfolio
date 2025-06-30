@@ -85,15 +85,25 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
 
   // Effect to open modal from URL hash
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.startsWith('#project-')) {
-      const projectId = parseInt(hash.substring('#project-'.length), 10);
-      const projectToOpen = projects.find(p => p.id === projectId);
-      if (projectToOpen) {
-        openModal(projectToOpen);
+    const processHash = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#project-')) {
+        const projectId = parseInt(hash.substring('#project-'.length), 10);
+        const projectToOpen = projects.find(p => p.id === projectId);
+        if (projectToOpen) {
+          openModal(projectToOpen);
+        }
       }
-    }
-  }, [projects]);
+    };
+
+    const timer = setTimeout(processHash, 100);
+    window.addEventListener('hashchange', processHash);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', processHash);
+    };
+  }, [projects, openModal]);
 
   // Close modal on escape key
   useEffect(() => {

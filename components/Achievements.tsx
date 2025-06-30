@@ -66,7 +66,7 @@ const Achievements = () => {
   }, [closeModal]);
 
   useEffect(() => {
-    const handleHashChange = () => {
+    const processHash = () => {
       const hash = window.location.hash;
       if (!hash) return;
     
@@ -91,9 +91,13 @@ const Achievements = () => {
       }
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    const timer = setTimeout(processHash, 100);
+    window.addEventListener('hashchange', processHash);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', processHash);
+    };
   }, [achievements, leadership, volunteering, openModal]);
 
   const Card = ({ item }: { item: Achievement }) => {
