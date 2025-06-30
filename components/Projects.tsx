@@ -50,7 +50,7 @@ const findFirstExistingImage = (urls: string[]): Promise<string | null> => {
     tryNext();
   });
 };
-
+//extension change
 const Projects = ({ projects }: ProjectsProps) => {
   const [filter, setFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
