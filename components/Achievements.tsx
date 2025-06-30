@@ -181,17 +181,17 @@ const Achievements = ({ achievements }: AchievementsProps) => {
           {achievements.leadership.map((role) => (
              <div 
                 key={role.id}
-                className={`bg-white/10 rounded-lg p-6 flex items-start gap-4 transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
                 onClick={() => hasMedia(role) ? openModal(role) : undefined}
               >
-              <div className="w-24 h-24 rounded-lg bg-purple-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <div className="h-40 bg-purple-500/10 flex items-center justify-center">
                 {getThumbnail(role) ? (
-                  <Image src={getThumbnail(role)!} alt={`${role.role} thumbnail`} width={96} height={96} className="w-full h-full object-cover"/>
+                  <Image src={getThumbnail(role)!} alt={`${role.role} thumbnail`} width={200} height={160} className="w-full h-full object-cover"/>
                 ) : (
                   <svg className="w-12 h-12 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                 )}
               </div>
-              <div>
+              <div className="p-4">
                 <h4 className="font-bold text-white">{role.role}</h4>
                 <p className="text-sm text-purple-300">{role.organization}</p>
                 <p className="text-xs text-gray-400 mt-1">{role.duration}</p>
@@ -204,23 +204,23 @@ const Achievements = ({ achievements }: AchievementsProps) => {
       {/* Volunteering */}
       <div>
         <h3 className="text-2xl font-bold text-white mb-8 text-center">Volunteering</h3>
-        <div className="space-y-4">
+        <div className="max-w-4xl mx-auto space-y-4">
           {achievements.volunteering.map((activity) => (
             <div
               key={activity.id}
-              className={`bg-white/10 rounded-lg p-4 flex items-center gap-4 transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+              className={`bg-white/10 rounded-lg flex items-center gap-6 overflow-hidden transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}
               onClick={() => hasMedia(activity) ? openModal(activity) : undefined}
             >
-              <div className="w-20 h-20 rounded-lg bg-pink-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <div className="w-48 h-full flex-shrink-0 bg-pink-500/10 flex items-center justify-center">
                 {getThumbnail(activity) ? (
-                  <Image src={getThumbnail(activity)!} alt={`${activity.activity} thumbnail`} width={80} height={80} className="w-full h-full object-cover"/>
+                  <Image src={getThumbnail(activity)!} alt={`${activity.activity} thumbnail`} width={192} height={128} className="w-full h-full object-cover"/>
                 ) : (
                   <svg className="w-10 h-10 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                 )}
               </div>
-              <div>
+              <div className="p-4">
                 <h4 className="font-semibold text-white">{activity.activity}</h4>
-                <p className="text-sm text-gray-400">{activity.impact}</p>
+                <p className="text-sm text-pink-300">{activity.impact}</p>
               </div>
             </div>
           ))}
@@ -230,7 +230,7 @@ const Achievements = ({ achievements }: AchievementsProps) => {
       {/* Modal */}
       {selectedItem && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-lg z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={closeModal}
         >
           <div
