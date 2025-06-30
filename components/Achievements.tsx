@@ -220,7 +220,7 @@ const Achievements = ({ achievements }: AchievementsProps) => {
               </div>
               <div className="p-4">
                 <h4 className="font-semibold text-white">{activity.activity}</h4>
-                <p className="text-sm text-pink-300">{activity.organization}</p>
+                <p className="text-sm text-pink-300">{activity.impact}</p>
               </div>
             </div>
           ))}
