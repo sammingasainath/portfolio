@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
-import ImageCarousel from './ImageCarousel';
 import Image from 'next/image';
 
 interface ExperienceItem {
@@ -90,7 +89,7 @@ const Experience = ({ experience }: ExperienceProps) => {
       let idx = 0;
       const tryNext = () => {
         if (idx >= urls.length) return resolve(null);
-        const testImg = new Image();
+        const testImg = new window.Image();
         testImg.onload = () => resolve(urls[idx]);
         testImg.onerror = () => {
           idx += 1;
@@ -455,7 +454,7 @@ const Experience = ({ experience }: ExperienceProps) => {
                           {mediaItem.alt}
                         </h5>
                         <div className="p-4">
-                          <MediaRenderer mediaItem={mediaItem} />
+                          <MediaRenderer media={mediaItem} />
                         </div>
                       </div>
                     ))}

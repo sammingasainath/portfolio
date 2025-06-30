@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import ImageCarousel from './ImageCarousel';
 
 export interface MediaItem {
   type: 'image' | 'video' | 'gallery' | 'thumbnail';

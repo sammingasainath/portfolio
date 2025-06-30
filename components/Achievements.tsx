@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import MediaRenderer from './MediaRenderer';
-import ImageCarousel from './ImageCarousel';
-import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 
 interface MediaItem {
@@ -117,7 +115,7 @@ const Achievements = ({ achievements }: AchievementsProps) => {
       let idx = 0;
       const tryNext = () => {
         if (idx >= urls.length) return resolve(null);
-        const testImg = new Image();
+        const testImg = new window.Image();
         testImg.onload = () => resolve(urls[idx]);
         testImg.onerror = () => {
           idx += 1;
@@ -555,7 +553,7 @@ const Achievements = ({ achievements }: AchievementsProps) => {
                           {mediaItem.alt}
                         </h5>
                         <div className="p-4">
-                          <MediaRenderer mediaItem={mediaItem} />
+                          <MediaRenderer media={mediaItem} />
                         </div>
                       </div>
                     ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 
@@ -39,7 +39,7 @@ const findFirstExistingImage = (urls: string[]): Promise<string | null> => {
     let idx = 0;
     const tryNext = () => {
       if (idx >= urls.length) return resolve(null);
-      const testImg = new Image();
+      const testImg = new window.Image();
       testImg.onload = () => resolve(urls[idx]);
       testImg.onerror = () => {
         idx += 1;
@@ -150,8 +150,6 @@ const Projects = ({ projects }: ProjectsProps) => {
     }
   };
 
-
-
   // Helper function to detect YouTube URLs (used for thumbnails)
   const isYouTubeUrl = (url: string): boolean => {
     return url.includes('youtube.com') || url.includes('youtu.be');
@@ -175,13 +173,12 @@ const Projects = ({ projects }: ProjectsProps) => {
     return [];
   };
 
-  const getYouTubeThumbnail = (url: string): string | null => {
+  const getYouTubeThumbnail = useCallback((url: string): string | null => {
     const thumbnails = getYouTubeThumbnailUrls(url);
     return thumbnails.length > 0 ? thumbnails[0] : null;
-  };
+  }, []);
 
-  // Helper function to get project thumbnail
-  const getProjectThumbnail = (project: Project): { type: string; src: string; alt: string } | null => {
+  const getProjectThumbnail = useCallback((project: Project): { type: string; src: string; alt: string } | null => {
     if (!project.media || project.media.length === 0) return null;
     
     // First, look for a designated thumbnail
@@ -210,10 +207,10 @@ const Projects = ({ projects }: ProjectsProps) => {
     }
     
     return firstMedia;
-  };
+  }, [thumbnailCache, getYouTubeThumbnail]);
 
   // Test function to verify thumbnail paths for problematic projects
-  const testThumbnailPaths = () => {
+  const testThumbnailPaths = useCallback(() => {
     console.log('🧪 === THUMBNAIL PATH TESTING ===');
     
     // Test UPI Payment System
@@ -246,12 +243,12 @@ const Projects = ({ projects }: ProjectsProps) => {
       console.log('  - Generated thumbnail:', thumbnail);
       console.log('  - Expected to work: http://localhost:3000/media/Post4Planet/1.jpg');
     }
-  };
+  }, [projects.projects, getProjectThumbnail]);
 
   // Run test on component mount
   useEffect(() => {
     testThumbnailPaths();
-  }, []);
+  }, [testThumbnailPaths]);
 
   // Probe gallery thumbnails once on mount / when projects change
   useEffect(() => {
@@ -269,7 +266,7 @@ const Projects = ({ projects }: ProjectsProps) => {
         });
       }
     });
-  }, [projects.projects]);
+  }, [projects.projects, thumbnailCache]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -566,7 +563,7 @@ const Projects = ({ projects }: ProjectsProps) => {
                           {mediaItem.alt}
                         </h5>
                         <div className="p-4">
-                          <MediaRenderer mediaItem={mediaItem} />
+                          <MediaRenderer media={mediaItem} />
                         </div>
                       </div>
                     ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 
 interface CarouselImage {
@@ -38,7 +38,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
           for (const ext of imageExtensions) {
             const imagePath = `${folderPath}/${i}.${ext}`;
             const imagePromise = new Promise<CarouselImage>((resolve, reject) => {
-              const img = new Image();
+              const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - Image ${i}` });
               img.onerror = () => reject();
               img.src = imagePath;
@@ -53,7 +53,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
           for (const ext of imageExtensions) {
             const imagePath = `${folderPath}/${name}.${ext}`;
             const imagePromise = new Promise<CarouselImage>((resolve, reject) => {
-              const img = new Image();
+              const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - ${name}` });
               img.onerror = () => reject();
               img.src = imagePath;
@@ -88,17 +88,17 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
   }, [folderPath, alt]);
 
   // Navigation functions
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
-  };
+  }, [images.length]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-  };
+  }, [images.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -139,7 +139,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [goToNext, goToPrevious]);
 
   if (loading) {
     return (
