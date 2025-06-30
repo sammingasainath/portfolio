@@ -28,29 +28,22 @@ interface ProjectsProps {
 }
 
 const getProjectThumbnail = (project: Project): string | null => {
-  if (!project.media || project.media.length === 0) {
-    return null;
+  if (!project.media || project.media.length === 0) return null;
+
+  const firstMedia = project.media[0];
+  if (firstMedia.type === 'gallery' && firstMedia.images && firstMedia.images.length > 0) {
+    return firstMedia.images[0];
   }
 
-  // 1. Look for an explicit 'thumbnail' type
-  const thumbnailMedia = project.media.find(m => m.type === 'thumbnail');
-  if (thumbnailMedia?.type === 'thumbnail') {
-    return thumbnailMedia.src;
-  }
+  const image = project.media.find(m => m.type === 'image' || m.type === 'thumbnail');
+  if (image && 'src' in image) return image.src;
 
-  // 2. Look for the first 'image' type
-  const imageMedia = project.media.find(m => m.type === 'image');
-  if (imageMedia?.type === 'image') {
-    return imageMedia.src;
+  // Fallback for any gallery if no image/thumbnail is found
+  const gallery = project.media.find(m => m.type === 'gallery');
+  if (gallery && 'images' in gallery && gallery.images.length > 0) {
+    return gallery.images[0];
   }
-
-  // 3. Look for the first 'gallery' and take its first image
-  const galleryMedia = project.media.find(m => m.type === 'gallery');
-  if (galleryMedia?.type === 'gallery' && galleryMedia.images.length > 0) {
-    return galleryMedia.images[0];
-  }
-
-  // 4. Handle YouTube videos
+  
   const videoMedia = project.media.find(m => m.type === 'video' && m.src.includes('youtube'));
   if (videoMedia?.type === 'video') {
     const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
@@ -60,21 +53,21 @@ const getProjectThumbnail = (project: Project): string | null => {
     }
   }
 
-  return null; // No suitable thumbnail found
+  return null;
 };
 
-const Projects = ({ projects }: ProjectsProps) => {
+const Projects = ({ projects: { projects } }: ProjectsProps) => {
   const [filter, setFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showNonFeatured, setShowNonFeatured] = useState(false);
 
-  const categories = ['All', ...new Set(projects.projects.map(p => p.category))];
+  const categories = ['All', ...new Set(projects.map(p => p.category))];
   const filteredProjects = filter === 'All' 
-    ? projects.projects 
-    : projects.projects.filter(p => p.category === filter);
+    ? projects 
+    : projects.filter(p => p.category === filter);
 
-  const featuredProjects = projects.projects.filter(p => p.featured);
-  const nonFeaturedProjects = projects.projects.filter(p => !p.featured);
+  const featuredProjects = projects.filter(p => p.featured);
+  const nonFeaturedProjects = projects.filter(p => !p.featured);
 
   const openModal = (project: Project) => {
     setSelectedProject(project);

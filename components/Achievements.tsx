@@ -3,118 +3,56 @@
 import { useState, useEffect } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
+import achievementsData from '@/public/data/achievements.json';
 
-interface Achievement {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  category: string;
-  organization: string;
-  impact?: string;
-  link?: string;
-  featured: boolean;
-  project?: string;
-  media?: MediaItem[];
-}
+type Achievement = (typeof achievementsData.achievements)[0];
+type Leadership = (typeof achievementsData.leadership)[0];
+type Volunteering = (typeof achievementsData.volunteering)[0];
 
-interface Leadership {
-  id: number;
-  role: string;
-  organization: string;
-  description: string;
-  duration: string;
-  media?: MediaItem[];
-}
-
-interface Volunteering {
-  id: number;
-  activity: string;
-  description: string;
-  impact: string;
-  type: string;
-  media?: MediaItem[];
-}
-
-interface AchievementsData {
-  achievements: Achievement[];
-  leadership: Leadership[];
-  volunteering: Volunteering[];
-}
-
-interface AchievementsProps {
-  achievements: AchievementsData;
-}
-
-const getThumbnail = (item: Achievement | Leadership | Volunteering): string | null => {
-  if (!item.media || item.media.length === 0) {
-    return null;
-  }
-
-  // 1. Look for an explicit 'thumbnail' type
-  const thumbnailMedia = item.media.find(m => m.type === 'thumbnail');
-  if (thumbnailMedia?.type === 'thumbnail') {
-    return thumbnailMedia.src;
-  }
-
-  // 2. Look for the first 'image' type
-  const imageMedia = item.media.find(m => m.type === 'image');
-  if (imageMedia?.type === 'image') {
-    return imageMedia.src;
-  }
-
-  // 3. Look for the first 'gallery' and take its first image
-  const galleryMedia = item.media.find(m => m.type === 'gallery');
-  if (galleryMedia?.type === 'gallery' && galleryMedia.images.length > 0) {
-    return galleryMedia.images[0];
-  }
-
-  // 4. Handle YouTube videos
-  const videoMedia = item.media.find(m => m.type === 'video' && m.src.includes('youtube'));
-  if (videoMedia?.type === 'video') {
-    const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-    const match = videoMedia.src.match(youtubeRegex);
-    if (match && match[1]) {
-      return `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg`;
-    }
-  }
-
-  return null; // No suitable thumbnail found
-};
-
-
-const Achievements = ({ achievements }: AchievementsProps) => {
+const Achievements = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Achievement | Leadership | Volunteering | null>(null);
+  const { achievements } = achievementsData;
+
+  const getThumbnail = (item: Achievement | Leadership | Volunteering): string | null => {
+    if (!item.media || item.media.length === 0) return null;
+
+    const firstMedia = item.media[0];
+    if (firstMedia.type === 'gallery' && firstMedia.images && firstMedia.images.length > 0) {
+      return firstMedia.images[0];
+    }
+
+    const image = item.media.find(m => m.type === 'image' || m.type === 'thumbnail');
+    if (image && 'src' in image) return image.src;
+
+    // Fallback for any gallery if no image/thumbnail is found
+    const gallery = item.media.find(m => m.type === 'gallery');
+    if (gallery && 'images' in gallery && gallery.images.length > 0) {
+      return gallery.images[0];
+    }
+
+    return null;
+  };
+
+  const hasMedia = (item: Achievement | Leadership | Volunteering): boolean => {
+    return !!item.media && item.media.length > 0;
+  };
 
   const openModal = (item: Achievement | Leadership | Volunteering) => {
-    setSelectedItem(item);
-    document.body.style.overflow = 'hidden';
+    if (hasMedia(item)) {
+      setSelectedItem(item);
+      setModalOpen(true);
+    }
   };
 
   const closeModal = () => {
+    setModalOpen(false);
     setSelectedItem(null);
-    document.body.style.overflow = 'auto';
-  };
-  
-  useEffect(() => {
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    };
-    window.addEventListener('keydown', handleEsc);
-    return () => {
-      window.removeEventListener('keydown', handleEsc);
-    };
-  }, []);
-
-  const hasMedia = (item: Achievement | Leadership | Volunteering): boolean => {
-    return !!(item.media && item.media.length > 0);
   };
 
-  const Card = ({ item }: { item: Achievement | Leadership | Volunteering }) => {
+  const Card = ({ item }: { item: Achievement }) => {
     const thumbnailSrc = getThumbnail(item);
-    const title = 'title' in item ? item.title : 'role' in item ? item.role : item.activity;
+    const { title, date, organization, description } = item;
 
     return (
       <div
@@ -132,135 +70,113 @@ const Achievements = ({ achievements }: AchievementsProps) => {
             />
           ) : (
             <div className="text-6xl text-purple-400/50">
-              {'organization' in item ? item.organization.split(' ').map(word => word[0]).join('').slice(0, 2) : 'A'}
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             </div>
           )}
         </div>
-        <div className="p-6">
-          <h4 className="text-xl font-bold text-white mb-2">{title}</h4>
-          {'organization' in item && <p className="text-purple-300 text-sm mb-2">{item.organization} &bull; {'date' in item && item.date}</p>}
-          <p className="text-gray-300 text-sm line-clamp-2">{item.description}</p>
+        <div className="p-5">
+          <p className="text-xs text-purple-300 uppercase tracking-wider">{organization} • {date}</p>
+          <h3 className="text-white font-bold text-xl mt-2 mb-2">{title}</h3>
+          <p className="text-gray-400 text-sm">{description}</p>
         </div>
       </div>
     );
   };
-
+  
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-          Achievements & <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Recognition</span>
+    <section id="achievements" className="py-20">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center text-white mb-12">
+          Achievements & Recognition
         </h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto"></div>
-      </div>
-
-      {/* Featured Achievements */}
-      <div className="mb-16">
-        <h3 className="text-2xl font-bold text-white mb-8 text-center">Major Achievements</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {achievements.achievements.filter(a => a.featured).map((achievement) => (
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {achievements.filter(a => a.featured).map((achievement) => (
             <Card key={achievement.id} item={achievement} />
           ))}
         </div>
-      </div>
 
-      {/* Other Achievements */}
-      <div className="mb-16">
-        <h3 className="text-2xl font-bold text-white mb-8 text-center">Other Achievements</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievements.achievements.filter(a => !a.featured).map((achievement) => (
-            <Card key={achievement.id} item={achievement} />
-          ))}
-        </div>
-      </div>
-
-      {/* Leadership */}
-      <div className="mb-16">
-        <h3 className="text-2xl font-bold text-white mb-8 text-center">Leadership & Public Speaking</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievements.leadership.map((role) => (
-             <div 
-                key={role.id}
-                className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
-                onClick={() => hasMedia(role) ? openModal(role) : undefined}
-              >
-              <div className="h-40 bg-purple-500/10 flex items-center justify-center">
-                {getThumbnail(role) ? (
-                  <Image src={getThumbnail(role)!} alt={`${role.role} thumbnail`} width={200} height={160} className="w-full h-full object-contain"/>
-                ) : (
-                  <svg className="w-12 h-12 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                )}
-              </div>
-              <div className="p-4">
-                <h4 className="font-bold text-white">{role.role}</h4>
-                <p className="text-sm text-purple-300">{role.organization}</p>
-                <p className="text-xs text-gray-400 mt-1">{role.duration}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Volunteering */}
-      <div>
-        <h3 className="text-2xl font-bold text-white mb-8 text-center">Volunteering</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievements.volunteering.map((activity) => (
-            <div
-              key={activity.id}
-              className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}
-              onClick={() => hasMedia(activity) ? openModal(activity) : undefined}
-            >
-              <div className="h-40 bg-pink-500/10 flex items-center justify-center">
-                {getThumbnail(activity) ? (
-                  <Image src={getThumbnail(activity)!} alt={`${activity.activity} thumbnail`} width={200} height={160} className="w-full h-full object-contain"/>
-                ) : (
-                  <svg className="w-10 h-10 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                )}
-              </div>
-              <div className="p-4">
-                <h4 className="font-semibold text-white">{activity.activity}</h4>
-                <p className="text-sm text-pink-300">{activity.impact}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Modal */}
-      {selectedItem && (
-        <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-gray-900/70 border border-white/10 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-white">{'title' in selectedItem ? selectedItem.title : 'role' in selectedItem ? selectedItem.role : selectedItem.activity}</h3>
-                  {'organization' in selectedItem && <p className="text-purple-300">{selectedItem.organization}</p>}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">Leadership & Public Speaking</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {achievementsData.leadership.map((role) => (
+               <div 
+                  key={role.id}
+                  className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                  onClick={() => hasMedia(role) ? openModal(role) : undefined}
+                >
+                <div className="h-40 bg-purple-500/10 flex items-center justify-center">
+                  {getThumbnail(role) ? (
+                    <Image src={getThumbnail(role)!} alt={`${role.role} thumbnail`} width={200} height={160} className="w-full h-full object-contain"/>
+                  ) : (
+                    <svg className="w-12 h-12 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  )}
                 </div>
-                <button onClick={closeModal} className="text-gray-400 hover:text-white">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
+                <div className="p-4">
+                  <h4 className="font-bold text-white">{role.role}</h4>
+                  <p className="text-sm text-purple-300">{role.organization}</p>
+                  <p className="text-xs text-gray-400 mt-1">{role.period}</p>
+                </div>
               </div>
-              <div className="space-y-6">
-                <p className="text-gray-300">{selectedItem.description}</p>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">Volunteering</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {achievementsData.volunteering.map((activity) => (
+              <div
+                key={activity.id}
+                className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                onClick={() => hasMedia(activity) ? openModal(activity) : undefined}
+              >
+                <div className="h-40 bg-pink-500/10 flex items-center justify-center">
+                  {getThumbnail(activity) ? (
+                    <Image src={getThumbnail(activity)!} alt={`${activity.activity} thumbnail`} width={200} height={160} className="w-full h-full object-contain"/>
+                  ) : (
+                    <svg className="w-10 h-10 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                  )}
+                </div>
+                <div className="p-4">
+                  <h4 className="font-semibold text-white">{activity.activity}</h4>
+                  <p className="text-sm text-pink-300">{activity.impact}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {modalOpen && selectedItem && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={closeModal}>
+            <div 
+              className="bg-gray-900/90 border border-purple-500/30 rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl shadow-purple-500/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+              
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-white pr-8">
+                  {'title' in selectedItem ? selectedItem.title : 'role' in selectedItem ? selectedItem.role : selectedItem.activity}
+                </h3>
+                <p className='text-gray-300 text-sm'>
+                  {'description' in selectedItem && selectedItem.description}
+                </p>
+                
                 {selectedItem.media && selectedItem.media.length > 0 && (
                   <div>
-                    <h4 className="text-lg font-semibold text-white mt-8 mb-4">Media</h4>
+                    <h4 className="text-xl font-semibold text-white mt-6 mb-3">Media</h4>
                     <MediaRenderer media={selectedItem.media} />
                   </div>
                 )}
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </section>
   );
 };
 
