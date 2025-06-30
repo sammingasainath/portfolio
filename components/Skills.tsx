@@ -20,7 +20,21 @@ interface SkillsProps {
   skills: SkillsData;
 }
 
-const SkillCard = ({ category, index, isExpanded, onToggle, getIconForCategory, getSkillName, getSkillLogo }) => {
+interface SkillCategoryWithIndex extends SkillCategory {
+  originalIndex: number;
+}
+
+interface SkillCardProps {
+  category: SkillCategory;
+  index: number;
+  isExpanded: boolean;
+  onToggle: (index: number) => void;
+  getIconForCategory: (categoryName: string) => string;
+  getSkillName: (skill: string | SkillItem) => string;
+  getSkillLogo: (skill: string | SkillItem) => string | undefined;
+}
+
+const SkillCard = ({ category, index, isExpanded, onToggle, getIconForCategory, getSkillName, getSkillLogo }: SkillCardProps) => {
   return (
     <div 
       key={`${category.name}-${index}`}
@@ -131,7 +145,7 @@ const Skills = ({ skills }: SkillsProps) => {
   };
 
   // --- PREPARE COLUMNS FOR MASONRY LAYOUT ---
-  const columns = {
+  const columns: { lg: SkillCategoryWithIndex[][]; md: SkillCategoryWithIndex[][] } = {
     lg: [[], [], []],
     md: [[], []],
   };

@@ -61,7 +61,7 @@ const Achievements = ({ achievements }: AchievementsProps) => {
   };
 
   const hasMedia = (item: Achievement | Leadership | Volunteering): boolean => {
-    return item.media && item.media.length > 0;
+    return !!(item.media && item.media.length > 0);
   };
 
   // Helper function to get YouTube thumbnail

@@ -44,7 +44,7 @@ const Experience = ({ experience }: ExperienceProps) => {
   };
 
   const hasMedia = (exp: ExperienceItem): boolean => {
-    return exp.media && exp.media.length > 0;
+    return !!(exp.media && exp.media.length > 0);
   };
 
   // Helper function to get YouTube thumbnail
