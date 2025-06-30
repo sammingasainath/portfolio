@@ -221,22 +221,36 @@ const Experience = ({ experience }: ExperienceProps) => {
                 <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300">
                     {/* Image Thumbnail */}
-                    <div 
-                      onClick={() => hasMedia(exp) && openModal(exp)}
-                      className={`h-40 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center overflow-hidden ${hasMedia(exp) ? 'cursor-pointer' : ''}`}
+                    <div
+                      className="absolute left-0 top-0 h-full w-48 flex-shrink-0"
+                      onClick={() => openModal(exp)}
                     >
                       {(() => {
                         const thumbnail = getThumbnail(exp);
                         if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
                           return (
-                            <Image
-                              src={thumbnail.src}
-                              alt={thumbnail.alt}
-                              width={128}
-                              height={128}
-                              className="w-full h-full object-cover"
-                              onError={createThumbnailErrorHandler(exp)}
-                            />
+                            <div className="h-full w-full relative group cursor-pointer">
+                              <Image
+                                src={thumbnail.src}
+                                alt={thumbnail.alt}
+                                width={192}
+                                height={192}
+                                className="w-full h-full object-cover"
+                                onError={createThumbnailErrorHandler(exp)}
+                              />
+                              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
+                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <svg
+                                  className="w-6 h-6 text-purple-400 cursor-pointer hover:text-pink-400 transition-colors duration-300"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                              </div>
+                            </div>
                           );
                         } else {
                           return (
