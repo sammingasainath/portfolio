@@ -95,14 +95,27 @@ const Experience = ({ experience }: ExperienceProps) => {
   }, [closeModal]);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.startsWith('#experience-')) {
-      const experienceId = parseInt(hash.substring('#experience-'.length), 10);
-      const experienceToOpen = experience.experiences.find(e => e.id === experienceId);
-      if (experienceToOpen && hasMedia(experienceToOpen)) {
-        openModal(experienceToOpen);
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#experience-')) {
+        const experienceId = parseInt(hash.substring('#experience-'.length), 10);
+        const experienceToOpen = experience.experiences.find(e => e.id === experienceId);
+        if (experienceToOpen && hasMedia(experienceToOpen)) {
+          openModal(experienceToOpen);
+        }
       }
-    }
+    };
+  
+    // Check hash on initial load
+    handleHashChange();
+  
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+  
+    // Cleanup listener
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, [experience, openModal]);
 
   const hasMedia = (exp: ExperienceItem): boolean => {

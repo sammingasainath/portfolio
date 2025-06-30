@@ -66,28 +66,34 @@ const Achievements = () => {
   }, [closeModal]);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (!hash) return;
-  
-    const parts = hash.substring(1).split('-');
-    const type = parts[0];
-    const id = parseInt(parts[1], 10);
-  
-    if (!type || isNaN(id)) return;
-  
-    let itemToOpen: Achievement | Leadership | Volunteering | undefined;
-  
-    if (type === 'achievement') {
-      itemToOpen = achievements.find(item => item.id === id);
-    } else if (type === 'leadership') {
-      itemToOpen = leadership.find(item => item.id === id);
-    } else if (type === 'volunteer') {
-      itemToOpen = volunteering.find(item => item.id === id);
-    }
-  
-    if (itemToOpen) {
-      openModal(itemToOpen);
-    }
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+    
+      const parts = hash.substring(1).split('-');
+      const type = parts[0];
+      const id = parseInt(parts[1], 10);
+    
+      if (!type || isNaN(id)) return;
+    
+      let itemToOpen: Achievement | Leadership | Volunteering | undefined;
+    
+      if (type === 'achievement') {
+        itemToOpen = achievements.find(item => item.id === id);
+      } else if (type === 'leadership') {
+        itemToOpen = leadership.find(item => item.id === id);
+      } else if (type === 'volunteer') {
+        itemToOpen = volunteering.find(item => item.id === id);
+      }
+    
+      if (itemToOpen) {
+        openModal(itemToOpen);
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, [achievements, leadership, volunteering, openModal]);
 
   const Card = ({ item }: { item: Achievement }) => {
