@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { prefixPath } from '@/lib/path-helper';
 
 interface CarouselImage {
   src: string;
@@ -43,7 +44,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
               const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - Image ${i}` });
               img.onerror = () => reject();
-              img.src = `${router.basePath}${imagePath}`;
+              img.src = prefixPath(imagePath);
             });
             imagePromises.push(imagePromise);
           }
@@ -58,7 +59,7 @@ const ImageCarousel = ({ folderPath, alt, title }: ImageCarouselProps) => {
               const img = new window.Image();
               img.onload = () => resolve({ src: imagePath, alt: `${alt} - ${name}` });
               img.onerror = () => reject();
-              img.src = `${router.basePath}${imagePath}`;
+              img.src = prefixPath(imagePath);
             });
             imagePromises.push(imagePromise);
           }
