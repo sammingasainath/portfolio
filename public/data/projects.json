@@ -5,12 +5,22 @@
       "title": "Voice-Based AI Assistant for Small Indian Retailers",
       "tagline": "AI assistant for regional languages with OCR, object detection, and on-device LLM",
       "description": "Developed an AI assistant for regional languages, integrating OCR, object detection, and on-device LLM to improve operational efficiency and reduce error rates for small Indian retailers.",
-      "technologies": ["Flutter", "Firebase", "ML Kit", "SQLite", "OCR", "Object Detection", "On-device LLM"],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "ML Kit",
+        "SQLite",
+        "OCR",
+        "Object Detection",
+        "On-device LLM"
+      ],
       "category": "AI/ML",
       "status": "Completed",
       "demoUrl": "https://ssrao22.notion.site/Projects-b01b6eeec5a34bf29a39a6a7b303e786?p=207f38cd400f44b0b00ad72e8e3638b6&pm=c",
       "sourceCodeUrl": "",
-      "awards": ["Nasscomm Foundation Thingqbator National Top 10 and Funded 5 Lakh INR by Nasscomm Foundation"],
+      "awards": [
+        "Nasscomm Foundation Thingqbator National Top 10 and Funded 5 Lakh INR by Nasscomm Foundation"
+      ],
       "featured": true,
       "media": [
         {
@@ -23,14 +33,28 @@
           "src": "https://www.youtube.com/watch?v=hrE8h-5NSGY",
           "alt": "A Bit More Advanced POC"
         },
-
         {
           "type": "gallery",
-          "src": "/media/Amyr",
-          "alt": "Amyr App Screenshots"
+          "alt": "Amyr App Screenshots",
+          "baseSrc": "/media/Amyr",
+          "images": [
+            "/media/Amyr/1.png",
+            "/media/Amyr/2.png",
+            "/media/Amyr/3.png",
+            "/media/Amyr/4.png",
+            "/media/Amyr/5.png",
+            "/media/Amyr/6.png",
+            "/media/Amyr/7.png",
+            "/media/Amyr/8.png",
+            "/media/Amyr/9.png",
+            "/media/Amyr/10.png",
+            "/media/Amyr/11.png",
+            "/media/Amyr/12.png",
+            "/media/Amyr/13.png",
+            "/media/Amyr/14.png",
+            "/media/Amyr/15.png"
+          ]
         }
-
-
       ]
     },
     {
@@ -38,10 +62,21 @@
       "title": "User-Friendly CRM for Real Estate Agents",
       "tagline": "CRM with voice-driven operations and automatic product matching",
       "description": "Engineered a comprehensive CRM system with voice-driven operations and automatic product matching, enhancing lead conversion and client satisfaction for real estate professionals.",
-      "technologies": ["Flutter", "Firebase", "ML Kit", "SQLite", "Node.js", "Docker", "AWS"],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "ML Kit",
+        "SQLite",
+        "Node.js",
+        "Docker",
+        "AWS"
+      ],
       "category": "Business",
       "status": "Completed",
-      "awards": ["Udaan Business Plan Winner INR 25K Cash Prize","Nasscomm Foundation Thingqbator National Top 20  and Company Incorporation Funded"],
+      "awards": [
+        "Udaan Business Plan Winner INR 25K Cash Prize",
+        "Nasscomm Foundation Thingqbator National Top 20  and Company Incorporation Funded"
+      ],
       "demoUrl": "https://ssrao22.notion.site/Projects-b01b6eeec5a34bf29a39a6a7b303e786?p=06164b3a591949549380a848c63d25aa&pm=c",
       "sourceCodeUrl": "https://github.com/sammingasainath/FHaiDA_CRM",
       "featured": true,
@@ -51,7 +86,6 @@
           "src": "https://www.youtube.com/watch?v=EYuFncaXd-0",
           "alt": "Pitch Video"
         },
-        
         {
           "type": "video",
           "src": "https://www.youtube.com/watch?v=o9TSi1aqADM",
@@ -62,8 +96,6 @@
           "src": "https://fhaida.medium.com/fhaida-crm-cross-platform-crm-tailored-for-real-estate-built-with-flutter-firebase-3ba62e842b45",
           "alt": "Real Estate CRM App"
         }
-
-        
       ]
     },
     {
@@ -71,18 +103,31 @@
       "title": "DishDash: Fitness Fueler & Budget Buddy",
       "tagline": "Personalized nutritional diet plans using linear programming optimization",
       "description": "Developed an Android application that generates personalized nutritional diet plans using advanced linear programming. Implemented a backend with Google Apps Script and Google OR-Tools to solve constrained optimization models with nutritional constraints.",
-      "technologies": ["Flutter", "Dart", "Google OR-Tools", "REST API", "Google Apps Script", "Linear Programming"],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Google OR-Tools",
+        "REST API",
+        "Google Apps Script",
+        "Linear Programming"
+      ],
       "category": "Health",
       "status": "Completed",
       "demoUrl": "",
       "sourceCodeUrl": "https://github.com/sammingasainath/protein_optimizer_app",
       "featured": false,
       "media": [
-        
         {
           "type": "gallery",
-          "src": "/media/DishDash",
-          "alt": "DishDash nutrition optimization app"
+          "alt": "DishDash nutrition optimization app",
+          "baseSrc": "/media/DishDash",
+          "images": [
+            "/media/DishDash/script.png",
+            "/media/DishDash/1.jpg",
+            "/media/DishDash/2.jpg",
+            "/media/DishDash/3.jpg",
+            "/media/DishDash/4.jpg"
+          ]
         },
         {
           "type": "image",
@@ -96,7 +141,12 @@
       "title": "Serverless UPI Payment Confirmation System",
       "tagline": "Real-time UPI payment verification with high throughput processing",
       "description": "Developed a serverless system to confirm UPI payments, reducing processing time and operational cost. Leveraged asynchronous programming for high throughput and near real-time transaction verification.",
-      "technologies": ["Flutter", "Background Services", "Asynchronous Programming", "UPI Integration"],
+      "technologies": [
+        "Flutter",
+        "Background Services",
+        "Asynchronous Programming",
+        "UPI Integration"
+      ],
       "category": "FinTech",
       "status": "Completed",
       "demoUrl": "https://ssrao22.notion.site/Projects-b01b6eeec5a34bf29a39a6a7b303e786?p=9d054baad8c341f3b023b3620177e127&pm=c",
@@ -105,8 +155,12 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/ServerlessPG",
-          "alt": "UPI Payment Confirmation System"
+          "alt": "UPI Payment Confirmation System",
+          "baseSrc": "/media/ServerlessPG",
+          "images": [
+            "/media/ServerlessPG/1.png",
+            "/media/ServerlessPG/2.png"
+          ]
         }
       ]
     },
@@ -115,43 +169,101 @@
       "title": "Post4Planet: Transforming Indian Postal Services",
       "tagline": "Digital transformation initiative with sustainability focus and carbon tracking",
       "description": "Led a digital transformation initiative for Indian Postal Services with a focus on sustainability. Implemented carbon emission tracking, resource optimization, and smart energy control via QR codes. Introduced eco-credits (Atoms) to reward sustainable practices.",
-      "technologies": ["Flutter", "Firebase", "AI", "QR Code Systems", "Carbon Tracking", "Sustainability Tech"],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "AI",
+        "QR Code Systems",
+        "Carbon Tracking",
+        "Sustainability Tech"
+      ],
       "category": "Sustainability",
       "status": "Completed",
       "demoUrl": "https://fhaida.medium.com/post4planet-transforming-indian-postal-services-4d4e6470c51e",
       "sourceCodeUrl": "",
       "featured": true,
-      "awards": ["Smart India Hackathon 2024 Winner 1 Lakh INR Cash Prize"],
+      "awards": [
+        "Smart India Hackathon 2024 Winner 1 Lakh INR Cash Prize"
+      ],
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Post4Planet",
-          "alt": "Post4Planet sustainability App"
+          "alt": "Post4Planet sustainability App",
+          "baseSrc": "/media/Post4Planet",
+          "images": [
+            "/media/Post4Planet/1.jpg",
+            "/media/Post4Planet/2.jpg",
+            "/media/Post4Planet/3.jpg",
+            "/media/Post4Planet/4.jpg",
+            "/media/Post4Planet/5.jpg",
+            "/media/Post4Planet/6.jpg",
+            "/media/Post4Planet/7.jpg",
+            "/media/Post4Planet/8.jpg",
+            "/media/Post4Planet/9.jpg",
+            "/media/Post4Planet/10.jpg",
+            "/media/Post4Planet/11.jpg",
+            "/media/Post4Planet/12.jpg",
+            "/media/Post4Planet/13.jpg",
+            "/media/Post4Planet/14.jpg",
+            "/media/Post4Planet/15.jpg",
+            "/media/Post4Planet/16.jpg",
+            "/media/Post4Planet/17.jpg",
+            "/media/Post4Planet/18.jpg",
+            "/media/Post4Planet/19.jpg",
+            "/media/Post4Planet/20.jpg"
+          ]
         },
         {
           "type": "gallery",
-          "src": "/media/Post4Planet/dashboards",
-          "alt": "Post4Planet sustainability dashboard"
+          "alt": "Post4Planet sustainability dashboard",
+          "baseSrc": "/media/Post4Planet/dashboards",
+          "images": [
+            "/media/Post4Planet/dashboards/1.png",
+            "/media/Post4Planet/dashboards/2.png",
+            "/media/Post4Planet/dashboards/3.png",
+            "/media/Post4Planet/dashboards/4.png",
+            "/media/Post4Planet/dashboards/5.png"
+          ]
         },
         {
           "type": "gallery",
-          "src": "/media/Post4Planet/Solar Estimator",
-          "alt": "Post4Planet Solar Estimator"
+          "alt": "Post4Planet Solar Estimator",
+          "baseSrc": "/media/Post4Planet/Solar Estimator",
+          "images": [
+            "/media/Post4Planet/Solar Estimator/1.jpg",
+            "/media/Post4Planet/Solar Estimator/2.jpg"
+          ]
         },
         {
           "type": "gallery",
-          "src": "/media/Post4Planet/Learning App",
-          "alt": "Post4Planet Learning App"
+          "alt": "Post4Planet Learning App",
+          "baseSrc": "/media/Post4Planet/Learning App",
+          "images": [
+            "/media/Post4Planet/Learning App/1.jpg",
+            "/media/Post4Planet/Learning App/2.jpg",
+            "/media/Post4Planet/Learning App/3.jpg"
+          ]
         },
         {
           "type": "gallery",
-          "src": "/media/Post4Planet/Bak App",
-          "alt": "Post4Planet Waste Segregation App"
+          "alt": "Post4Planet Waste Segregation App",
+          "baseSrc": "/media/Post4Planet/Bak App",
+          "images": [
+            "/media/Post4Planet/Bak App/1.jpg",
+            "/media/Post4Planet/Bak App/2.jpg",
+            "/media/Post4Planet/Bak App/3.jpg"
+          ]
         },
         {
           "type": "gallery",
-          "src": "/media/Post4Planet/chatbot",
-          "alt": "Post4Planet Customer Support Chatbot"
+          "alt": "Post4Planet Customer Support Chatbot",
+          "baseSrc": "/media/Post4Planet/chatbot",
+          "images": [
+            "/media/Post4Planet/chatbot/data_agg.webp",
+            "/media/Post4Planet/chatbot/1.webp",
+            "/media/Post4Planet/chatbot/2.webp",
+            "/media/Post4Planet/chatbot/3.webp"
+          ]
         },
         {
           "type": "image",
@@ -163,8 +275,6 @@
           "src": "https://fhaida.medium.com/post4planet-transforming-indian-postal-services-4d4e6470c51e",
           "alt": "Complete Journey Blog"
         }
-        
-
       ]
     },
     {
@@ -172,28 +282,32 @@
       "title": "Anu Civil - GeoExploratory Project Management System",
       "tagline": "Integrated full-stack solution for construction project management",
       "description": "Developed an integrated full-stack solution combining a Flutter mobile app and a Next.js web panel, improving project efficiency by 30%. Streamlined project management workflows for civil engineering projects.",
-      "technologies": ["Next.js", "Flutter", "Firebase", "Project Management", "Full-stack Development"],
+      "technologies": [
+        "Next.js",
+        "Flutter",
+        "Firebase",
+        "Project Management",
+        "Full-stack Development"
+      ],
       "category": "Business",
       "status": "Completed",
       "demoUrl": "https://ssrao22.notion.site/Projects-b01b6eeec5a34bf29a39a6a7b303e786?p=a04ce406b0b848f197d66cea083642d3&pm=c",
       "sourceCodeUrl": "",
       "featured": false,
-      "awards": ["Solvitarka Technologies Intern Project"],
+      "awards": [
+        "Solvitarka Technologies Intern Project"
+      ],
       "media": [
-
         {
           "type": "video",
           "src": "https://www.youtube.com/watch?v=HKojZU1OyOE",
           "alt": "Anu Civil project management Dashboard"
         },
         {
-        "type": "video",
-        "src": "https://www.youtube.com/watch?v=51pPoQlJHRw",
-        "alt": "Anu Civil project Client App"
-      }
-
-        
-       
+          "type": "video",
+          "src": "https://www.youtube.com/watch?v=51pPoQlJHRw",
+          "alt": "Anu Civil project Client App"
+        }
       ]
     },
     {
@@ -201,7 +315,13 @@
       "title": "Harit Parishar - Sustainability Empowerment Application",
       "tagline": "Personalized environmental insights with real-time ML analysis",
       "description": "Developed an application to empower sustainability through personalized environmental insights. Leveraged ML Kit and TensorFlow to analyze sustainability metrics in real time, driving eco-friendly initiatives.",
-      "technologies": ["Flutter", "Firebase", "ML Kit", "TensorFlow", "Environmental Analysis"],
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "ML Kit",
+        "TensorFlow",
+        "Environmental Analysis"
+      ],
       "category": "Sustainability",
       "status": "Completed",
       "demoUrl": "https://ssrao22.notion.site/Harit-Parishar-Sustainability-Application",
@@ -210,16 +330,29 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Harit Parisar",
-          "alt": "Harit Parishar sustainability app"
+          "alt": "Harit Parishar sustainability app",
+          "baseSrc": "/media/Harit Parisar",
+          "images": [
+            "/media/Harit Parisar/1.jpeg",
+            "/media/Harit Parisar/2.jpeg",
+            "/media/Harit Parisar/3.jpeg",
+            "/media/Harit Parisar/4.jpeg",
+            "/media/Harit Parisar/5.jpeg",
+            "/media/Harit Parisar/6.jpeg",
+            "/media/Harit Parisar/7.jpeg",
+            "/media/Harit Parisar/8.jpeg",
+            "/media/Harit Parisar/9.jpeg",
+            "/media/Harit Parisar/10.jpeg",
+            "/media/Harit Parisar/11.jpeg",
+            "/media/Harit Parisar/12.jpeg",
+            "/media/Harit Parisar/13.jpeg"
+          ]
         },
         {
           "type": "blog",
           "src": "https://fhaida.medium.com/building-harit-parisar-a-campus-sustainability-revolution-in-flutter-67ac5193bace",
           "alt": "Harit Parishar Blog"
         }
-
-        
       ]
     },
     {
@@ -227,7 +360,14 @@
       "title": "Institute Gate Management (QR Code System)",
       "tagline": "QR code-based access control with real-time authentication",
       "description": "Designed and implemented a QR code-based access control system, integrating real-time authentication with Google Sheets and Django for streamlined institute gate management.",
-      "technologies": ["Google Apps Script", "Flutter", "Google Sheets", "Django", "QR Code", "Authentication"],
+      "technologies": [
+        "Google Apps Script",
+        "Flutter",
+        "Google Sheets",
+        "Django",
+        "QR Code",
+        "Authentication"
+      ],
       "category": "Security",
       "status": "Completed",
       "demoUrl": "https://ssrao22.notion.site/Projects-b01b6eeec5a34bf29a39a6a7b303e786?p=b571e916813f4f31ad0a38aabce94e3d&pm=c",
@@ -244,7 +384,6 @@
           "src": "https://www.youtube.com/watch?v=HSLPWnwRsAk",
           "alt": "Institute Gate Management QR Code System demo"
         }
-       
       ]
     },
     {
@@ -252,7 +391,13 @@
       "title": "Referral System Demo for Business",
       "tagline": "Comprehensive referral management with dual-interface system",
       "description": "Developed a dual-interface referral system with an Associate Side for generating referral links (with OTP verification) and a comprehensive Admin Side for managing referrals and payments. Features secure bank details storage, dynamic dashboard updates, and QR code-based payment processing.",
-      "technologies": ["MongoDB", "OTP API", "Custom Dashboard", "QR Code Payments", "Security"],
+      "technologies": [
+        "MongoDB",
+        "OTP API",
+        "Custom Dashboard",
+        "QR Code Payments",
+        "Security"
+      ],
       "category": "Business",
       "status": "Completed",
       "demoUrl": "",
@@ -271,7 +416,14 @@
       "title": "Unified Workplace Data System",
       "tagline": "Comprehensive workplace data aggregation with AI-powered analysis",
       "description": "Developed a system to aggregate and contextualize workplace data from Linear, Slack, and Google Meet. Implemented webhooks to capture real-time updates, using Google Apps Script to format and centralize data in Google Docs. Integrated Chrome extension for meeting transcripts and Google Notebook LM for advanced analysis.",
-      "technologies": ["Google Apps Script", "Webhooks", "Google Docs", "Chrome Extension", "Google Notebook LM", "Data Integration"],
+      "technologies": [
+        "Google Apps Script",
+        "Webhooks",
+        "Google Docs",
+        "Chrome Extension",
+        "Google Notebook LM",
+        "Data Integration"
+      ],
       "category": "Productivity",
       "status": "Completed",
       "demoUrl": "https://fhaida.medium.com/a-comprehensive-guide-to-building-a-workplace-contextualization-system-5c2e41b07d07",
@@ -295,7 +447,15 @@
       "title": "Smart CRM System in Google Sheets",
       "tagline": "Advanced, No-Code/Low-Code CRM Prototype with Email Automation, Role-Based Views, and API Extensions",
       "description": "Built a comprehensive lead management system entirely on Google Sheets, powered by Google Apps Script. Features centralized lead database, dynamic settings dashboard, automated email workflows, employee assignment system, analytics dashboard, and secure access management. Includes WhatsApp integration, Google Calendar scheduling, and API extension capabilities for scalable CRM automation.",
-      "technologies": ["Google Apps Script", "Google Sheets", "Gmail", "Google Calendar", "WhatsApp API", "Automation", "CRM"],
+      "technologies": [
+        "Google Apps Script",
+        "Google Sheets",
+        "Gmail",
+        "Google Calendar",
+        "WhatsApp API",
+        "Automation",
+        "CRM"
+      ],
       "category": "Business",
       "status": "Completed",
       "demoUrl": "",
@@ -312,8 +472,6 @@
           "src": "https://medium.com/@fhaida/how-i-turned-google-sheets-into-a-lean-automated-crm-a-technical-walk-through-05ef8fae19e2",
           "alt": "How I Turned Google Sheets into a Lean Automated CRM"
         }
-
-
       ]
     },
     {
@@ -321,15 +479,20 @@
       "title": "Gaze-Controlled Video Player (Blink-to-Pause)",
       "tagline": "Hands-free media control using Python, OpenCV and a standard webcam",
       "description": "Built a desktop video player prototype that automatically pauses when you look away and resumes when you look back. Implemented real-time face/eye detection, configurable delay thresholds, and simulated media-key control—no dedicated eye-tracker required.",
-      "technologies": ["Python", "OpenCV", "PyAutoGUI", "Tkinter", "Computer Vision", "Accessibility"],
+      "technologies": [
+        "Python",
+        "OpenCV",
+        "PyAutoGUI",
+        "Tkinter",
+        "Computer Vision",
+        "Accessibility"
+      ],
       "category": "AI/ML",
       "status": "Completed",
       "demoUrl": "",
       "sourceCodeUrl": "https://github.com/sammingasainath/pauplay",
       "featured": false,
       "media": [
-
-        
         {
           "type": "video",
           "src": "https://www.youtube.com/watch?v=IdbU9TwuGiA",
@@ -347,7 +510,15 @@
       "title": "Universal Sensor-as-a-Service API",
       "tagline": "Turn any smartphone into a real-time sensor gateway with an embedded HTTP REST server",
       "description": "Developed a Flutter-powered micro-service that exposes phone sensors (accelerometer, gyroscope, GPS, camera and more) via a CORS-enabled HTTP/JSON API—transforming any idle phone into an instant IoT edge device.",
-      "technologies": ["Flutter", "Dart", "Shelf", "REST API", "Sensors", "Swagger", "CORS"],
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "Shelf",
+        "REST API",
+        "Sensors",
+        "Swagger",
+        "CORS"
+      ],
       "category": "IoT",
       "status": "Completed",
       "demoUrl": "",
@@ -356,17 +527,28 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/SensorAPI/App",
-          "alt": "Sensor-API device screenshots"
+          "alt": "Sensor-API device screenshots",
+          "baseSrc": "/media/SensorAPI/App",
+          "images": [
+            "/media/SensorAPI/App/1.jpeg",
+            "/media/SensorAPI/App/2.jpeg",
+            "/media/SensorAPI/App/3.jpeg",
+            "/media/SensorAPI/App/4.jpeg",
+            "/media/SensorAPI/App/5.jpeg",
+            "/media/SensorAPI/App/6.jpeg",
+            "/media/SensorAPI/App/7.jpeg"
+          ]
         },
-        
         {
           "type": "gallery",
-          "src": "/media/SensorAPI/Swagger Documentation",
-          "alt": "Sensor-API Swagger UI"
+          "alt": "Sensor-API Swagger UI",
+          "baseSrc": "/media/SensorAPI/Swagger Documentation",
+          "images": [
+            "/media/SensorAPI/Swagger Documentation/1.png",
+            "/media/SensorAPI/Swagger Documentation/2.png",
+            "/media/SensorAPI/Swagger Documentation/3.png"
+          ]
         }
-
-
       ]
     },
     {
@@ -374,7 +556,16 @@
       "title": "Retrieval-Augmented Assessment Recommender",
       "tagline": "From web-scraping to LLM-reranking: a production-ready Gen-AI stack with FastAPI, Supabase & Gemini",
       "description": "End-to-end system that ingests the SHL assessment catalog, embeds descriptions with Gemini, stores vectors in Postgres/pgvector, and serves real-time recommendations via a FastAPI RAG pipeline with a Streamlit UI.",
-      "technologies": ["FastAPI", "Streamlit", "Python", "Supabase", "PostgreSQL", "pgvector", "Google Gemini", "Docker"],
+      "technologies": [
+        "FastAPI",
+        "Streamlit",
+        "Python",
+        "Supabase",
+        "PostgreSQL",
+        "pgvector",
+        "Google Gemini",
+        "Docker"
+      ],
       "category": "AI/ML",
       "status": "Completed",
       "demoUrl": "https://shl-assessment-frontend.onrender.com/",
@@ -383,8 +574,19 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Rag Recommendor",
-          "alt": "RAG Recommendor screenshots"
+          "alt": "RAG Recommendor screenshots",
+          "baseSrc": "/media/Rag Recommendor",
+          "images": [
+            "/media/Rag Recommendor/1.png",
+            "/media/Rag Recommendor/2.png",
+            "/media/Rag Recommendor/3.png",
+            "/media/Rag Recommendor/4.png",
+            "/media/Rag Recommendor/5.png",
+            "/media/Rag Recommendor/6.png",
+            "/media/Rag Recommendor/7.png",
+            "/media/Rag Recommendor/8.png",
+            "/media/Rag Recommendor/9.png"
+          ]
         }
       ]
     },
@@ -393,7 +595,14 @@
       "title": "Telugu Word-Embedding Playground (CBOW Visualizer)",
       "tagline": "Train, animate, and explore word embeddings for low-resource languages in a single desktop app",
       "description": "End-to-end desktop application that lets users paste transliterated Telugu text, train a CBOW Word2Vec model, and watch real-time t-SNE/PCA visualisations with similarity & analogy tools — all powered by PyTorch, Tkinter, and Plotly.",
-      "technologies": ["Python", "PyTorch", "Tkinter", "NumPy", "scikit-learn", "Plotly"],
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "Tkinter",
+        "NumPy",
+        "scikit-learn",
+        "Plotly"
+      ],
       "category": "AI/ML",
       "status": "Completed",
       "demoUrl": "",
@@ -402,8 +611,17 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/telvizcbow",
-          "alt": "Telugu CBOW Visualizer screenshots"
+          "alt": "Telugu CBOW Visualizer screenshots",
+          "baseSrc": "/media/telvizcbow",
+          "images": [
+            "/media/telvizcbow/1.png",
+            "/media/telvizcbow/2.png",
+            "/media/telvizcbow/3.png",
+            "/media/telvizcbow/4.png",
+            "/media/telvizcbow/5.png",
+            "/media/telvizcbow/6.png",
+            "/media/telvizcbow/7.png"
+          ]
         }
       ]
     },
@@ -412,7 +630,12 @@
       "title": "Telugu N-gram Model Visualizer",
       "tagline": "Probability tables come alive: interactively explore 2-5 gram predictions with emoji-friendly Telugu text",
       "description": "Desktop Tkinter tool that turns a pure-Python n-gram engine into an animated teaching aid—shows step-by-step math, bar-chart probabilities, and auto-saves screenshots/logs. Supports Telugu written in Latin script plus full emoji tokenisation.",
-      "technologies": ["Python", "Tkinter", "Matplotlib", "NumPy"],
+      "technologies": [
+        "Python",
+        "Tkinter",
+        "Matplotlib",
+        "NumPy"
+      ],
       "category": "AI/ML",
       "status": "Completed",
       "demoUrl": "",
@@ -424,8 +647,6 @@
           "src": "/media/telngramviz/image.png",
           "alt": "Telugu N-gram Model Visualizer screenshot"
         }
-
-
       ]
     },
     {
@@ -433,7 +654,12 @@
       "title": "How We, the Science and Technical Council Team, Turned a Soda Bottle into a Sky-High Water Rocket",
       "tagline": "Carbon-wrapped plastic bottle + air pressure = 100-meter DIY launch",
       "description": "A weekend engineering project that transforms an ordinary soda bottle into a water-powered rocket using a hand-shaped nozzle, carbon-fiber reinforcement, and lightweight fins—demonstrating Newton's third law and reaching ~100 m altitude.",
-      "technologies": ["DIY", "Aerospace Basics", "Carbon Fiber", "Hand Tools"],
+      "technologies": [
+        "DIY",
+        "Aerospace Basics",
+        "Carbon Fiber",
+        "Hand Tools"
+      ],
       "category": "Engineering",
       "status": "Completed",
       "demoUrl": "",
@@ -445,8 +671,6 @@
           "src": "/media/WaterRocket/rocket.jpg",
           "alt": "Water Rocket"
         }
-
-
       ]
     },
     {
@@ -454,19 +678,45 @@
       "title": "Ultimate College Ranking Engine with NSGA-II Pareto Optimization",
       "tagline": "Multi-criteria decision-making platform using advanced algorithms, real-time search, and interactive visualizations",
       "description": "A sophisticated college ranking application that transforms simple CSV data into an intelligent decision-making platform. Built with Next.js 13 and FastAPI, it implements NSGA-II non-dominated sorting for Pareto optimization, allowing users to select multiple parameters and see optimal trade-offs rather than arbitrary single scores. Features include real-time parameter selection with instant re-ranking, persistent session history that remembers every comparison, advanced search and filtering with live results, interactive visualizations using Recharts and Material-UI, side-by-side college comparison with detailed breakdowns, and comprehensive error handling. The system processes 17 NIRF parameters across categories like Student Metrics, Faculty Quality, Research Output, and Diversity, providing transparency in ranking methodology while empowering users to prioritize what matters most for their educational decisions.",
-      "technologies": ["Next.js 13", "FastAPI", "Python", "Material-UI", "Recharts", "Pandas", "NSGA-II Algorithm", "TypeScript"],
+      "technologies": [
+        "Next.js 13",
+        "FastAPI",
+        "Python",
+        "Material-UI",
+        "Recharts",
+        "Pandas",
+        "NSGA-II Algorithm",
+        "TypeScript"
+      ],
       "category": "Education",
       "status": "Completed",
       "demoUrl": "https://uchit.fhaida.com/",
       "sourceCodeUrl": "",
       "featured": false,
-              "media": [
-          {
-            "type": "gallery",
-            "src": "/media/Uchit/",
-            "alt": "Ultimate College Ranking Engine with NSGA-II Pareto Optimization"
-          }
-        ]
+      "media": [
+        {
+          "type": "gallery",
+          "alt": "Ultimate College Ranking Engine with NSGA-II Pareto Optimization",
+          "baseSrc": "/media/Uchit/",
+          "images": [
+            "/media/Uchit/1.png",
+            "/media/Uchit/2.png",
+            "/media/Uchit/3.png",
+            "/media/Uchit/4.png",
+            "/media/Uchit/5.png",
+            "/media/Uchit/6.png",
+            "/media/Uchit/7.png",
+            "/media/Uchit/8.png",
+            "/media/Uchit/9.png",
+            "/media/Uchit/10.png",
+            "/media/Uchit/11.png",
+            "/media/Uchit/12.png",
+            "/media/Uchit/13.png",
+            "/media/Uchit/14.png",
+            "/media/Uchit/15.png"
+          ]
+        }
+      ]
     }
   ]
-} 
+}

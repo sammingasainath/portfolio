@@ -22,7 +22,7 @@
           "src": "/media/Achievements/Thingqbator/certificate.jpg",
           "alt": "AMYR - Rs.5 Lakh Seed Grant Funding"
         },
-        { 
+        {
           "type": "video",
           "src": "https://www.youtube.com/watch?v=WJ5h80PloKE",
           "alt": "Felicitation Ceremony"
@@ -51,7 +51,6 @@
           "src": "/media/Achievements/Udaan/Udaan Winning Certificate.jpg",
           "alt": "UDAAN 2023 Business Plan Competition - 1st Prize Certificate"
         }
-        
       ]
     },
     {
@@ -68,8 +67,14 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Achievements/SIH/Felicitation",
-          "alt": "Felicitation Ceremony"
+          "alt": "Felicitation Ceremony",
+          "baseSrc": "/media/Achievements/SIH/Felicitation",
+          "images": [
+            "/media/Achievements/SIH/Felicitation/1.jpeg",
+            "/media/Achievements/SIH/Felicitation/2.jpeg",
+            "/media/Achievements/SIH/Felicitation/3.jpeg",
+            "/media/Achievements/SIH/Felicitation/4.jpeg"
+          ]
         },
         {
           "type": "image",
@@ -91,10 +96,14 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Achievements/Aastee.com Digital Marketing Success/",
-          "alt": "Aastee.com Dashboard Screenshots"
+          "alt": "Aastee.com Dashboard Screenshots",
+          "baseSrc": "/media/Achievements/Aastee.com Digital Marketing Success/",
+          "images": [
+            "/media/Achievements/Aastee.com Digital Marketing Success/1.png",
+            "/media/Achievements/Aastee.com Digital Marketing Success/2.png",
+            "/media/Achievements/Aastee.com Digital Marketing Success/3.png"
+          ]
         }
-        
       ]
     },
     {
@@ -137,11 +146,17 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Achievements/Multiple Hackathon Finalist/",
-          "alt": "Hackathon and Competitions Finalist"
+          "alt": "Hackathon and Competitions Finalist",
+          "baseSrc": "/media/Achievements/Multiple Hackathon Finalist/",
+          "images": [
+            "/media/Achievements/Multiple Hackathon Finalist/1.jpg",
+            "/media/Achievements/Multiple Hackathon Finalist/2.jpg",
+            "/media/Achievements/Multiple Hackathon Finalist/3.jpg",
+            "/media/Achievements/Multiple Hackathon Finalist/4.jpg",
+            "/media/Achievements/Multiple Hackathon Finalist/5.png"
+          ]
         }
       ]
-      
     }
   ],
   "leadership": [
@@ -172,10 +187,6 @@
           "src": "/media/Leadership Positions/Science and Technical Council/4.jpg",
           "alt": "Selection in S&T Council"
         }
-
-
-        
-        
       ]
     },
     {
@@ -225,10 +236,7 @@
           "src": "/media/Leadership Positions/Volunteering/1.jpeg",
           "alt": "Me Teaching STEM Subjects to Students"
         }
-        
-        
-        
       ]
     }
   ]
-} 
+}

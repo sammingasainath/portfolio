@@ -3,12 +3,17 @@
 import Image from 'next/image';
 import ImageCarousel from './ImageCarousel';
 
-export interface MediaItem {
-  type: 'image' | 'video' | 'gallery' | 'thumbnail';
-  src: string;
+export interface GalleryItem {
+  type: 'gallery';
   alt: string;
+  baseSrc?: string; // Original folder path, now optional
+  images: string[];
   title?: string;
 }
+
+export type MediaItem = 
+  | { type: 'image' | 'video' | 'thumbnail'; src: string; alt: string; title?: string }
+  | GalleryItem;
 
 interface MediaRendererProps {
   media: MediaItem | MediaItem[];
@@ -64,10 +69,19 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
               </video>
             );
           case 'gallery':
+            // Ensure item.images is an array to prevent crashes
+            if (!Array.isArray(item.images)) {
+              console.error('MediaRenderer: Gallery item is missing "images" array.', item);
+              return (
+                <div key={index} className="text-red-400">
+                  Error: Gallery data is invalid.
+                </div>
+              );
+            }
             return (
               <ImageCarousel
                 key={index}
-                folderPath={item.src}
+                images={item.images}
                 alt={item.alt}
                 title={item.title}
               />
