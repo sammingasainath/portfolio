@@ -179,12 +179,16 @@ const Achievements = ({ achievements }: AchievementsProps) => {
         <h3 className="text-2xl font-bold text-white mb-8 text-center">Leadership & Public Speaking</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {achievements.leadership.map((role) => (
-             <div key={role.id} className="bg-white/10 rounded-lg p-6 flex items-start gap-4">
+             <div 
+                key={role.id}
+                className={`bg-white/10 rounded-lg p-6 flex items-start gap-4 transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                onClick={() => hasMedia(role) ? openModal(role) : undefined}
+              >
               <div className="w-16 h-16 rounded-lg bg-purple-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 {getThumbnail(role) ? (
                   <Image src={getThumbnail(role)!} alt={`${role.role} thumbnail`} width={64} height={64} className="w-full h-full object-cover"/>
                 ) : (
-                  <svg className="w-8 h-8 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <svg className="w-8 h-8 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 002-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                 )}
               </div>
               <div>
@@ -202,7 +206,11 @@ const Achievements = ({ achievements }: AchievementsProps) => {
         <h3 className="text-2xl font-bold text-white mb-8 text-center">Volunteering</h3>
         <div className="space-y-4">
           {achievements.volunteering.map((activity) => (
-            <div key={activity.id} className="bg-white/10 rounded-lg p-4 flex items-center gap-4">
+            <div
+              key={activity.id}
+              className={`bg-white/10 rounded-lg p-4 flex items-center gap-4 transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+              onClick={() => hasMedia(activity) ? openModal(activity) : undefined}
+            >
               <div className="w-12 h-12 rounded-full bg-pink-500/20 flex-shrink-0 flex items-center justify-center overflow-hidden">
                 {getThumbnail(activity) ? (
                   <Image src={getThumbnail(activity)!} alt={`${activity.activity} thumbnail`} width={48} height={48} className="w-full h-full object-cover"/>
