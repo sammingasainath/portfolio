@@ -18,7 +18,7 @@ const Achievements = () => {
     if (!item.media || item.media.length === 0) return null;
 
     const firstMedia = item.media[0];
-    if (firstMedia.type === 'gallery' && 'images' in firstMedia && firstMedia.images.length > 0) {
+    if (firstMedia.type === 'gallery' && 'images' in firstMedia && firstMedia.images && firstMedia.images.length > 0) {
       return firstMedia.images[0];
     }
 
