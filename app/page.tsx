@@ -61,7 +61,7 @@ export default async function Home() {
       </section>
       
       <section id="contact" className="py-20">
-        <Contact />
+        <Contact profile={data.profile} />
       </section>
       
       <footer className="bg-slate-900 text-white py-8 text-center">
