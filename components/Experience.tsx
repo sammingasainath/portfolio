@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 
@@ -27,9 +27,44 @@ interface ExperienceProps {
   experience: ExperienceData;
 }
 
+const getThumbnail = (item: ExperienceItem): string | null => {
+  if (!item.media || item.media.length === 0) {
+    return null;
+  }
+
+  // 1. Look for an explicit 'thumbnail' type
+  const thumbnailMedia = item.media.find(m => m.type === 'thumbnail');
+  if (thumbnailMedia?.type === 'thumbnail') {
+    return thumbnailMedia.src;
+  }
+
+  // 2. Look for the first 'image' type
+  const imageMedia = item.media.find(m => m.type === 'image');
+  if (imageMedia?.type === 'image') {
+    return imageMedia.src;
+  }
+
+  // 3. Look for the first 'gallery' and take its first image
+  const galleryMedia = item.media.find(m => m.type === 'gallery');
+  if (galleryMedia?.type === 'gallery' && galleryMedia.images.length > 0) {
+    return galleryMedia.images[0];
+  }
+
+  // 4. Handle YouTube videos
+  const videoMedia = item.media.find(m => m.type === 'video' && m.src.includes('youtube'));
+  if (videoMedia?.type === 'video') {
+    const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const match = videoMedia.src.match(youtubeRegex);
+    if (match && match[1]) {
+      return `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg`;
+    }
+  }
+
+  return null; // No suitable thumbnail found
+};
+
 const Experience = ({ experience }: ExperienceProps) => {
   const [selectedExperience, setSelectedExperience] = useState<ExperienceItem | null>(null);
-  const [thumbnailCache, setThumbnailCache] = useState<Record<string, string>>({});
   const [expandedExperienceIndex, setExpandedExperienceIndex] = useState<number | null>(null);
 
   const toggleExperience = (index: number) => {
@@ -48,153 +83,6 @@ const Experience = ({ experience }: ExperienceProps) => {
     return !!(exp.media && exp.media.length > 0);
   };
 
-  // Helper function to get YouTube thumbnail
-  const getYouTubeThumbnail = (url: string): string | null => {
-    const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-    const match = url.match(youtubeRegex);
-    if (match && match[1]) {
-      const videoId = match[1];
-      return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-    }
-    return null;
-  };
-
-  const isYouTubeUrl = (url: string): boolean => {
-    return url.includes('youtube.com') || url.includes('youtu.be');
-  };
-
-  // Helper function to get gallery thumbnail alternatives
-  const getGalleryThumbnailAlternatives = (basePath: string): string[] => {
-    const encodedBasePath = basePath.split('/').map(segment => encodeURIComponent(segment)).join('/');
-    
-    return [
-      `${encodedBasePath}/1.jpg`,
-      `${encodedBasePath}/1.jpeg`,
-      `${encodedBasePath}/1.png`,
-      `${encodedBasePath}/1.webp`,
-      `${encodedBasePath}/screenshot.jpg`,
-      `${encodedBasePath}/screenshot.jpeg`,
-      `${encodedBasePath}/screenshot.png`,
-      `${encodedBasePath}/demo.jpg`,
-      `${encodedBasePath}/demo.jpeg`,
-      `${encodedBasePath}/demo.png`
-    ];
-  };
-
-  // Helper function to find first existing image
-  const findFirstExistingImage = (urls: string[]): Promise<string | null> => {
-    return new Promise((resolve) => {
-      if (!urls || urls.length === 0) return resolve(null);
-
-      let idx = 0;
-      const tryNext = () => {
-        if (idx >= urls.length) return resolve(null);
-        const testImg = new window.Image();
-        testImg.onload = () => resolve(urls[idx]);
-        testImg.onerror = () => {
-          idx += 1;
-          tryNext();
-        };
-        testImg.src = urls[idx];
-      };
-      tryNext();
-    });
-  };
-
-  // Helper function to get thumbnail for experience item
-  const getThumbnail = (exp: ExperienceItem): { type: string; src: string; alt: string } | null => {
-    if (!exp.media || exp.media.length === 0) return null;
-    
-    // First, look for a designated thumbnail
-    const thumbnail = exp.media.find(media => media.type === 'thumbnail');
-    if (thumbnail) return thumbnail;
-    
-    // If no thumbnail, use the first media item
-    const firstMedia = exp.media[0];
-    if (firstMedia.type === 'video' && isYouTubeUrl(firstMedia.src)) {
-      const youtubeThumbnail = getYouTubeThumbnail(firstMedia.src);
-      if (youtubeThumbnail) {
-        return {
-          type: 'image',
-          src: youtubeThumbnail,
-          alt: firstMedia.alt
-        };
-      }
-    } else if (firstMedia.type === 'gallery') {
-      // If we have already resolved a thumbnail for this gallery, use it
-      const cacheKey = `${exp.id}-${firstMedia.src}`;
-      const cached = thumbnailCache[cacheKey];
-      if (cached) {
-        return { type: 'image', src: cached, alt: firstMedia.alt };
-      }
-      // Otherwise return null to show icon fallback until resolved
-      return null;
-    }
-    
-    return firstMedia;
-  };
-
-  // Create thumbnail error handler
-  const createThumbnailErrorHandler = (exp: ExperienceItem) => (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const target = e.target as HTMLImageElement;
-    const currentSrc = target.src;
-
-    // YouTube thumbnails
-    if (currentSrc.includes('img.youtube.com/vi/')) {
-      if (currentSrc.includes('maxresdefault.jpg')) {
-        target.src = currentSrc.replace('maxresdefault.jpg', 'hqdefault.jpg');
-        return;
-      }
-      if (currentSrc.includes('hqdefault.jpg')) {
-        target.src = currentSrc.replace('hqdefault.jpg', 'mqdefault.jpg');
-        return;
-      }
-      if (currentSrc.includes('mqdefault.jpg')) {
-        target.src = currentSrc.replace('mqdefault.jpg', 'default.jpg');
-        return;
-      }
-      target.onerror = null;
-      return;
-    }
-
-    // Gallery thumbnails
-    if (exp.media && exp.media[0]?.type === 'gallery') {
-      const galleryBase = exp.media[0].src;
-      const alternatives = getGalleryThumbnailAlternatives(galleryBase);
-      const currentFile = currentSrc.substring(currentSrc.lastIndexOf('/'));
-      const currentIdx = alternatives.findIndex((alt) => alt.endsWith(currentFile));
-      const nextIdx = currentIdx + 1;
-
-      if (nextIdx < alternatives.length) {
-        target.src = alternatives[nextIdx];
-      } else {
-        target.onerror = null;
-      }
-    } else {
-      target.onerror = null;
-    }
-  };
-
-  // Probe gallery thumbnails once on mount
-  useEffect(() => {
-    experience.experiences.forEach((exp) => {
-      const cacheKey = `${exp.id}-${exp.media?.[0]?.src}`;
-      if (thumbnailCache[cacheKey]) return; // already resolved
-      
-      const firstMedia = exp.media?.[0];
-      if (firstMedia && firstMedia.type === 'gallery') {
-        const alternatives = getGalleryThumbnailAlternatives(firstMedia.src);
-        findFirstExistingImage(alternatives).then((url) => {
-          if (url) {
-            setThumbnailCache((prev) => ({ ...prev, [cacheKey]: url }));
-          } else {
-            setThumbnailCache((prev) => ({ ...prev, [cacheKey]: '' })); // mark attempted
-          }
-        });
-      }
-    });
-  }, [experience, thumbnailCache]);
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
@@ -211,6 +99,7 @@ const Experience = ({ experience }: ExperienceProps) => {
         <div className="space-y-12">
           {experience.experiences.map((exp, index) => {
             const isExpanded = expandedExperienceIndex === index;
+            const thumbnailSrc = getThumbnail(exp);
 
             return (
               <div key={exp.id} className={`flex flex-col md:flex-row items-start md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
@@ -225,27 +114,19 @@ const Experience = ({ experience }: ExperienceProps) => {
                       onClick={() => hasMedia(exp) && openModal(exp)}
                       className={`w-full sm:w-1/3 h-48 sm:h-auto bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center shrink-0 overflow-hidden ${hasMedia(exp) ? 'cursor-pointer' : ''}`}
                     >
-                      {(() => {
-                        const thumbnail = getThumbnail(exp);
-                        if (thumbnail && (thumbnail.type === 'image' || thumbnail.type === 'thumbnail')) {
-                          return (
-                            <Image
-                              src={thumbnail.src}
-                              alt={thumbnail.alt}
-                              width={200}
-                              height={200}
-                              className="w-full h-full object-cover"
-                              onError={createThumbnailErrorHandler(exp)}
-                            />
-                          );
-                        } else {
-                          return (
-                            <div className="text-5xl text-purple-400/50">
-                              {exp.company.split(' ').map(word => word[0]).join('').slice(0, 2)}
-                            </div>
-                          );
-                        }
-                      })()}
+                      {thumbnailSrc ? (
+                        <Image
+                          src={thumbnailSrc}
+                          alt={`${exp.company} thumbnail`}
+                          width={200}
+                          height={200}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="text-5xl text-purple-400/50">
+                          {exp.company.split(' ').map(word => word[0]).join('').slice(0, 2)}
+                        </div>
+                      )}
                     </div>
                     
                     {/* Main Content */}

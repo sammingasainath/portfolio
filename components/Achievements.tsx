@@ -85,17 +85,14 @@ const getThumbnail = (item: Achievement | Leadership | Volunteering): string | n
 
 const Achievements = ({ achievements }: AchievementsProps) => {
   const [selectedItem, setSelectedItem] = useState<Achievement | Leadership | Volunteering | null>(null);
-  const [modalType, setModalType] = useState<'achievement' | 'leadership' | 'volunteering' | null>(null);
 
-  const openModal = (item: Achievement | Leadership | Volunteering, type: 'achievement' | 'leadership' | 'volunteering') => {
+  const openModal = (item: Achievement | Leadership | Volunteering) => {
     setSelectedItem(item);
-    setModalType(type);
     document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setSelectedItem(null);
-    setModalType(null);
     document.body.style.overflow = 'auto';
   };
   
@@ -115,14 +112,14 @@ const Achievements = ({ achievements }: AchievementsProps) => {
     return !!(item.media && item.media.length > 0);
   };
 
-  const Card = ({ item, type }: { item: Achievement | Leadership | Volunteering, type: 'achievement' | 'leadership' | 'volunteering' }) => {
+  const Card = ({ item }: { item: Achievement | Leadership | Volunteering }) => {
     const thumbnailSrc = getThumbnail(item);
     const title = 'title' in item ? item.title : 'role' in item ? item.role : item.activity;
 
     return (
       <div
         className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer"
-        onClick={() => hasMedia(item) ? openModal(item, type) : undefined}
+        onClick={() => hasMedia(item) ? openModal(item) : undefined}
       >
         <div className="h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center overflow-hidden">
           {thumbnailSrc ? (
@@ -162,7 +159,7 @@ const Achievements = ({ achievements }: AchievementsProps) => {
         <h3 className="text-2xl font-bold text-white mb-8 text-center">Major Achievements</h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {achievements.achievements.filter(a => a.featured).map((achievement) => (
-            <Card key={achievement.id} item={achievement} type="achievement" />
+            <Card key={achievement.id} item={achievement} />
           ))}
         </div>
       </div>
@@ -172,7 +169,7 @@ const Achievements = ({ achievements }: AchievementsProps) => {
         <h3 className="text-2xl font-bold text-white mb-8 text-center">Other Achievements</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {achievements.achievements.filter(a => !a.featured).map((achievement) => (
-            <Card key={achievement.id} item={achievement} type="achievement" />
+            <Card key={achievement.id} item={achievement} />
           ))}
         </div>
       </div>

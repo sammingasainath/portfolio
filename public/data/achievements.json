@@ -217,8 +217,14 @@
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Leadership Positions/Active Participation/",
-          "alt": "Selection Letters for Various Positions in ACM, CodeChef, Entrepreneurship Cell"
+          "alt": "Selection Letters for Various Positions in ACM, CodeChef, Entrepreneurship Cell",
+          "baseSrc": "/media/Leadership Positions/Active Participation/",
+          "images": [
+            "/media/Leadership Positions/Active Participation/1.jpg",
+            "/media/Leadership Positions/Active Participation/2.jpg",
+            "/media/Leadership Positions/Active Participation/3.jpg",
+            "/media/Leadership Positions/Active Participation/4.jpg"
+          ]
         }
       ]
     }

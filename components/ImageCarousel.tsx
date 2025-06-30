@@ -19,6 +19,33 @@ const ImageCarousel = ({ images = [], alt, title }: ImageCarouselProps) => {
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
 
+  // Navigation functions
+  const goToPrevious = useCallback(() => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? (images?.length ?? 0) - 1 : prevIndex - 1
+    );
+  }, [images?.length]);
+
+  const goToNext = useCallback(() => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === (images?.length ?? 0) - 1 ? 0 : prevIndex + 1
+    );
+  }, [images?.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (event.key === 'ArrowRight') {
+        goToNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [goToNext, goToPrevious]);
+
   // Early return if no images are provided
   if (!images || images.length === 0) {
     return (
@@ -39,23 +66,6 @@ const ImageCarousel = ({ images = [], alt, title }: ImageCarouselProps) => {
     src,
     alt: `${alt} - Image ${i + 1}`,
   }));
-
-  // Navigation functions
-  const goToPrevious = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
-    );
-  }, [carouselImages.length]);
-
-  const goToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1
-    );
-  }, [carouselImages.length]);
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-  };
 
   // Touch handlers for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -84,19 +94,9 @@ const ImageCarousel = ({ images = [], alt, title }: ImageCarouselProps) => {
     touchEndX.current = 0;
   };
 
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowLeft') {
-        goToPrevious();
-      } else if (event.key === 'ArrowRight') {
-        goToNext();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goToNext, goToPrevious]);
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
 
   return (
     <div className="relative w-full max-w-4xl mx-auto">

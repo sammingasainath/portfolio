@@ -22,15 +22,26 @@
         "Integrated a voice assistant to facilitate inventory management and billing, enhancing functionality and user interaction",
         "Coordinated with the development team and collaborated with clients to align deliverables with project goals"
       ],
-      "technologies": ["Appwrite", "Flutter", "Voice Assistant Integration", "UI/UX Design"],
+      "technologies": [
+        "Appwrite",
+        "Flutter",
+        "Voice Assistant Integration",
+        "UI/UX Design"
+      ],
       "current": true,
       "media": [
         {
           "type": "gallery",
-          "src": "/media/Sambin Technologies/",
-          "alt": "Few Snaps from the Journey"
+          "alt": "Few Snaps from the Journey",
+          "baseSrc": "/media/Sambin Technologies/",
+          "images": [
+            "/media/Sambin Technologies/1.jpeg",
+            "/media/Sambin Technologies/2.png",
+            "/media/Sambin Technologies/3.png",
+            "/media/Sambin Technologies/4.png",
+            "/media/Sambin Technologies/5.jpeg"
+          ]
         }
-        
       ]
     },
     {
@@ -49,7 +60,14 @@
         "Collaborated with the team to manage, optimize, and customize multiple web applications",
         "Gained hands-on experience in fine-tuning LLMs for specialized tasks"
       ],
-      "technologies": ["ReactJS", "NextJS", "Flutter","React Native", "API Integration", "LLM Fine-tuning"],
+      "technologies": [
+        "ReactJS",
+        "NextJS",
+        "Flutter",
+        "React Native",
+        "API Integration",
+        "LLM Fine-tuning"
+      ],
       "current": false,
       "media": [
         {
@@ -57,8 +75,7 @@
           "src": "/media/Solvitarka Technologies/1.jpg",
           "alt": "Letter of Recommendation from Solvitarka Technologies"
         }
-
       ]
     }
   ]
-} 
+}

@@ -4,7 +4,8 @@ import path from 'path';
 const PUBLIC_DIR = path.resolve(process.cwd(), 'public');
 const DATA_FILES = [
   'public/data/projects.json',
-  'public/data/achievements.json'
+  'public/data/achievements.json',
+  'public/data/experience.json'
 ];
 
 async function listImageFiles(dirPath) {
@@ -26,35 +27,35 @@ async function processDataFile(filePath) {
   const fileContent = await fs.readFile(absolutePath, 'utf-8');
   const data = JSON.parse(fileContent);
 
-  const key = path.basename(filePath, '.json'); // 'projects' or 'achievements'
-  if (!data[key]) {
-    console.warn(`No top-level key '${key}' found in ${filePath}. Skipping.`);
-    return;
-  }
+  const keysToProcess = Object.keys(data);
 
-  for (const item of data[key]) {
-    if (item.media && Array.isArray(item.media)) {
-      for (let i = 0; i < item.media.length; i++) {
-        const mediaItem = item.media[i];
-        if (mediaItem.type === 'gallery' && typeof mediaItem.src === 'string') {
-          console.log(`  - Found gallery for "${item.title}": ${mediaItem.src}`);
-          const imagePaths = await listImageFiles(mediaItem.src);
-          
-          // Sort images naturally (e.g., 1.png, 2.png, 10.png)
-          imagePaths.sort((a, b) => {
-            const numA = parseInt(path.basename(a).match(/(\d+)/)?.[0] || '0');
-            const numB = parseInt(path.basename(b).match(/(\d+)/)?.[0] || '0');
-            return numA - numB;
-          });
+  for (const key of keysToProcess) {
+    if (Array.isArray(data[key])) {
+      console.log(`Processing array: ${key}...`);
+      for (const item of data[key]) {
+        if (item.media && Array.isArray(item.media)) {
+          for (let i = 0; i < item.media.length; i++) {
+            const mediaItem = item.media[i];
+            if (mediaItem.type === 'gallery' && typeof mediaItem.src === 'string') {
+              const itemTitle = item.title || item.company || item.role || `Item ${item.id}`;
+              console.log(`  - Found gallery for "${itemTitle}": ${mediaItem.src}`);
+              const imagePaths = await listImageFiles(mediaItem.src);
+              
+              imagePaths.sort((a, b) => {
+                const numA = parseInt(path.basename(a).match(/(\d+)/)?.[0] || '0');
+                const numB = parseInt(path.basename(b).match(/(\d+)/)?.[0] || '0');
+                return numA - numB;
+              });
 
-          // Replace the simple gallery item with a structured one
-          item.media[i] = {
-            type: 'gallery',
-            alt: mediaItem.alt,
-            baseSrc: mediaItem.src, // Keep original folder path
-            images: imagePaths
-          };
-          console.log(`    -> Populated with ${imagePaths.length} images.`);
+              item.media[i] = {
+                type: 'gallery',
+                alt: mediaItem.alt,
+                baseSrc: mediaItem.src,
+                images: imagePaths
+              };
+              console.log(`    -> Populated with ${imagePaths.length} images.`);
+            }
+          }
         }
       }
     }
