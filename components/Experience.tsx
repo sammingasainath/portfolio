@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 
@@ -66,6 +66,7 @@ const getThumbnail = (item: ExperienceItem): string | null => {
 const Experience = ({ experience }: ExperienceProps) => {
   const [selectedExperience, setSelectedExperience] = useState<ExperienceItem | null>(null);
   const [expandedExperienceIndex, setExpandedExperienceIndex] = useState<number | null>(null);
+  const isClosingRef = useRef(false);
 
   const toggleExperience = (index: number) => {
     setExpandedExperienceIndex(prevIndex => (prevIndex === index ? null : index));
@@ -77,10 +78,11 @@ const Experience = ({ experience }: ExperienceProps) => {
   }, []);
 
   const closeModal = useCallback(() => {
+    isClosingRef.current = true;
     setSelectedExperience(null);
     document.body.style.overflow = 'auto';
     if (window.location.hash) {
-      window.history.pushState("", document.title, window.location.pathname + window.location.search);
+      window.history.pushState({}, document.title, window.location.pathname + window.location.search);
     }
   }, []);
 
@@ -96,6 +98,10 @@ const Experience = ({ experience }: ExperienceProps) => {
 
   useEffect(() => {
     const processHash = () => {
+      if (isClosingRef.current) {
+        isClosingRef.current = false;
+        return;
+      }
       const hash = window.location.hash;
       if (hash.startsWith('#experience-')) {
         const experienceId = parseInt(hash.substring('#experience-'.length), 10);

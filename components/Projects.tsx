@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 
@@ -60,6 +60,7 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
   const [filter, setFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showNonFeatured, setShowNonFeatured] = useState(false);
+  const isClosingRef = useRef(false);
 
   const categories = ['All', ...new Set(projects.map(p => p.category))];
   const filteredProjects = filter === 'All' 
@@ -69,23 +70,28 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
   const featuredProjects = projects.filter(p => p.featured);
   const nonFeaturedProjects = projects.filter(p => !p.featured);
 
-  const openModal = (project: Project) => {
+  const openModal = useCallback((project: Project) => {
     setSelectedProject(project);
     document.body.style.overflow = 'hidden';
-  };
+  }, []);
 
   const closeModal = useCallback(() => {
+    isClosingRef.current = true;
     setSelectedProject(null);
     document.body.style.overflow = 'auto';
     // Clear the URL hash when the modal is closed
     if (window.location.hash) {
-      window.history.pushState("", document.title, window.location.pathname + window.location.search);
+      window.history.pushState({}, document.title, window.location.pathname + window.location.search);
     }
   }, []);
 
   // Effect to open modal from URL hash
   useEffect(() => {
     const processHash = () => {
+      if (isClosingRef.current) {
+        isClosingRef.current = false;
+        return;
+      }
       const hash = window.location.hash;
       if (hash.startsWith('#project-')) {
         const projectId = parseInt(hash.substring('#project-'.length), 10);

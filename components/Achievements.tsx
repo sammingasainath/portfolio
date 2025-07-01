@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 import Image from 'next/image';
 import achievementsData from '@/public/data/achievements.json';
@@ -13,6 +13,7 @@ const Achievements = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Achievement | Leadership | Volunteering | null>(null);
   const { achievements, leadership, volunteering } = achievementsData;
+  const isClosingRef = useRef(false);
 
   const getThumbnail = (item: Achievement | Leadership | Volunteering): string | null => {
     if (!item.media || item.media.length === 0) return null;
@@ -47,11 +48,12 @@ const Achievements = () => {
   }, []);
 
   const closeModal = useCallback(() => {
+    isClosingRef.current = true;
     setModalOpen(false);
     setSelectedItem(null);
     document.body.style.overflow = 'auto';
     if (window.location.hash) {
-      window.history.pushState("", document.title, window.location.pathname + window.location.search);
+      window.history.pushState({}, document.title, window.location.pathname + window.location.search);
     }
   }, []);
 
@@ -67,6 +69,10 @@ const Achievements = () => {
 
   useEffect(() => {
     const processHash = () => {
+      if (isClosingRef.current) {
+        isClosingRef.current = false;
+        return;
+      }
       const hash = window.location.hash;
       if (!hash) return;
     
