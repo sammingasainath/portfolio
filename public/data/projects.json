@@ -711,7 +711,13 @@
             "/media/Uchit/14.png",
             "/media/Uchit/15.png"
           ]
+        },
+        {
+          "type": "blog",
+          "src": "https://fhaida.medium.com/from-csv-to-confidence-a-deep-dive-into-our-college-ranking-engine-055690868fef",
+          "alt": "Deep Dive into Our Non Dominated College-Ranking Engine"
         }
+      
       ]
     }
   ]
