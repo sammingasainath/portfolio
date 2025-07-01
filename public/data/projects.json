@@ -544,6 +544,10 @@
             "/media/SensorAPI/Swagger Documentation/2.png",
             "/media/SensorAPI/Swagger Documentation/3.png"
           ]
+        },
+        { "type": "blog", 
+          "src": "https://fhaida.medium.com/building-a-universal-sensor-as-a-service-api-with-flutter-dart-0bbfa4cd5237", 
+          "alt": "Universal Mobile Sensors-as-a-Service API with Flutter & Dart" 
         }
       ]
     },
@@ -583,6 +587,10 @@
             "/media/Rag Recommendor/8.png",
             "/media/Rag Recommendor/9.png"
           ]
+        },
+         { "type": "blog", 
+          "src": "https://fhaida.medium.com/6c2fe2b1729c", 
+          "alt": "Retrieval-Augmented Recommender — A Deep-Dive" 
         }
       ]
     },
