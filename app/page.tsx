@@ -6,18 +6,22 @@ import Skills from '@/components/Skills';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Achievements from '@/components/Achievements';
+import Publications from '@/components/Publications';
+import OpenSource from '@/components/OpenSource';
 import Contact from '@/components/Contact';
 import Navigation from '@/components/Navigation';
 
 async function getData() {
   const dataDir = path.join(process.cwd(), 'public/data');
   
-  const [profileData, skillsData, experienceData, projectsData, achievementsData] = await Promise.all([
+  const [profileData, skillsData, experienceData, projectsData, achievementsData, publicationsData, opensourceData] = await Promise.all([
     fs.readFile(path.join(dataDir, 'profile.json'), 'utf8'),
     fs.readFile(path.join(dataDir, 'skills.json'), 'utf8'),
     fs.readFile(path.join(dataDir, 'experience.json'), 'utf8'),
     fs.readFile(path.join(dataDir, 'projects.json'), 'utf8'),
     fs.readFile(path.join(dataDir, 'achievements.json'), 'utf8'),
+    fs.readFile(path.join(dataDir, 'publications.json'), 'utf8'),
+    fs.readFile(path.join(dataDir, 'opensource.json'), 'utf8'),
   ]);
 
   return {
@@ -26,6 +30,8 @@ async function getData() {
     experience: JSON.parse(experienceData),
     projects: JSON.parse(projectsData),
     achievements: JSON.parse(achievementsData),
+    publications: JSON.parse(publicationsData),
+    opensource: JSON.parse(opensourceData),
   };
 }
 
@@ -54,6 +60,14 @@ export default async function Home() {
       
       <section id="projects" className="py-20">
         <Projects projects={data.projects} />
+      </section>
+      
+      <section id="publications" className="py-20">
+        <Publications publications={data.publications.publications} patents={data.publications.patents} />
+      </section>
+      
+      <section id="opensource" className="py-20">
+        <OpenSource contributions={data.opensource.contributions} />
       </section>
       
       <section id="achievements" className="py-20">

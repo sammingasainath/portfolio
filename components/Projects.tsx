@@ -129,7 +129,7 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
 
     return (
       <div
-        className="group relative bg-white/5 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-purple-500/20 hover:scale-105 cursor-pointer"
+        className="group relative bg-white/5 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-purple-500/20 hover:scale-105 cursor-pointer hover:bg-white/10 hover:shadow-2xl hover:border hover:border-purple-500/30"
         onClick={() => openModal(project)}
       >
         <div className="relative w-full aspect-[16/10] bg-black/20">
@@ -164,7 +164,7 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
             </div>
           )}
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-4">
             {project.technologies.slice(0, 3).map((tech) => (
               <span key={tech} className="px-3 py-1 bg-purple-500/10 text-purple-300 text-xs font-medium rounded-full">
                 {tech}
@@ -175,6 +175,15 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
                 +{project.technologies.length - 3}
               </span>
             )}
+          </div>
+
+          <div className="flex justify-end">
+            <div className="inline-flex items-center text-xs text-purple-400 group-hover:text-purple-300 transition-colors">
+              <span>Know More</span>
+              <svg className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -195,10 +204,10 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
             <button
               key={category}
               onClick={() => setFilter(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer hover:scale-105 transform ${
                 filter === category
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
+                  : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:shadow-md hover:border hover:border-purple-400/30'
               }`}
             >
               {category}
@@ -225,9 +234,10 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
           <div className="text-center">
             <button
               onClick={() => setShowNonFeatured(!showNonFeatured)}
-              className="px-6 py-3 bg-white/5 border border-purple-400/30 text-purple-300 rounded-lg hover:bg-purple-500/10 hover:border-purple-400/60 transition-all duration-300 shadow-lg"
+              className="px-6 py-3 bg-white/5 border border-purple-400/30 text-purple-300 rounded-lg hover:bg-purple-500/10 hover:border-purple-400/60 transition-all duration-300 shadow-lg cursor-pointer hover:scale-105 transform hover:shadow-purple-400/50 hover:shadow-xl relative group"
             >
-              {showNonFeatured ? 'Hide Other Projects' : `Show ${nonFeaturedProjects.length} Other Projects`}
+              <span className="relative z-10">{showNonFeatured ? 'Hide Other Projects' : `Show ${nonFeaturedProjects.length} Other Projects`}</span>
+              <div className="absolute inset-0 rounded-lg bg-purple-500 opacity-0 group-hover:opacity-5 transition-opacity duration-200"></div>
             </button>
           </div>
           {showNonFeatured && (
@@ -298,13 +308,15 @@ const Projects = ({ projects: { projects } }: ProjectsProps) => {
 
                 <div className="flex gap-4">
                   {selectedProject.demoUrl && (
-                    <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
-                      Live Demo
+                    <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 cursor-pointer hover:scale-105 transform hover:shadow-lg hover:shadow-purple-600/50 relative group">
+                      <span className="relative z-10">Live Demo</span>
+                      <div className="absolute inset-0 rounded-lg bg-purple-500 opacity-0 group-hover:opacity-20 transition-opacity duration-200"></div>
                     </a>
                   )}
                   {selectedProject.sourceCodeUrl && (
-                    <a href={selectedProject.sourceCodeUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors">
-                      Source Code
+                    <a href={selectedProject.sourceCodeUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-all duration-200 cursor-pointer hover:scale-105 transform hover:shadow-lg hover:shadow-gray-600/50 relative group">
+                      <span className="relative z-10">Source Code</span>
+                      <div className="absolute inset-0 rounded-lg bg-gray-600 opacity-0 group-hover:opacity-20 transition-opacity duration-200"></div>
                     </a>
                   )}
                 </div>

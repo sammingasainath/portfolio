@@ -1,0 +1,34 @@
+{
+  "contributions": [
+    {
+        "id": 1,
+        "name": "Google Docs Connector for AnythingLLM",
+        "description": "Developed a highly-requested feature to integrate Google Docs as a real-time, synchronized data source for the AnythingLLM RAG pipeline. The contribution included handling Google OAuth for authentication, fetching document content, and integrating it into the existing workspace and vector store infrastructure.",
+        "type": "contribution",
+        "role": "Contributor",
+        "technologies": ["JavaScript", "Node.js", "Google Cloud APIs", "OAuth 2.0"],
+        "repository": "https://github.com/Mintplex-Labs/anything-llm/pull/3324",
+        "homepage": "https://anythingllm.com/",
+        "stars": 49000,
+        "forks": 5100,
+        "license": "MIT",
+        "status": "Completed (PR Closed, Not Merged)",
+        "startDate": "2024-10-20",
+        "lastUpdated": "2025-05-07",
+        "contributions": {
+          "commits": 5,
+          "pullRequests": 1,
+          "issues": 1
+        },
+        "impact": "Authored a proof-of-concept for a major feature that was highly anticipated by the community. While the pull request was not merged due to architectural and maintenance concerns, the project maintainer praised the significant effort, noting that the work 'will be used in some way, shape or form' and that solving the OAuth challenge was '90% of the hard part'. This project demonstrates strong initiative, the ability to tackle complex API integrations, and a professional, receptive attitude to constructive feedback.",
+        "featured": true,
+        "media": [ {
+          "type": "image",
+          "src": "media/OpenSourceContri/Mintplex_labs/1.png",
+          "alt": "AnythingLLM - Google Docs Connector"
+        }
+       ]
+      }
+   
+  ]
+}

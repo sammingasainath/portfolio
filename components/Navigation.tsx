@@ -21,6 +21,8 @@ const Navigation = () => {
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Achievements', href: '#achievements' },
+    { name: 'Publications', href: '#publications' },
+    { name: 'Open Source', href: '#opensource' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -43,7 +45,7 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('#hero')}
-              className="text-xl font-bold text-white hover:text-purple-400 transition-colors"
+              className="text-xl font-bold text-white hover:text-purple-400 transition-all duration-300 cursor-pointer hover:scale-105 transform"
             >
               Samminga Sainath Rao
             </button>
@@ -56,9 +58,10 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-white hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  className="text-white hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer hover:bg-purple-500/10 hover:scale-105 transform relative group"
                 >
                   {item.name}
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-purple-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"></span>
                 </button>
               ))}
             </div>
@@ -68,7 +71,7 @@ const Navigation = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-purple-400 p-2"
+              className="text-white hover:text-purple-400 p-2 cursor-pointer hover:bg-purple-500/10 rounded-md transition-all duration-200 hover:scale-110 transform"
             >
               <svg
                 className="h-6 w-6"
@@ -104,7 +107,7 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-white hover:text-purple-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors"
+                  className="text-white hover:text-purple-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-200 cursor-pointer hover:bg-purple-500/10 hover:scale-105 transform hover:translate-x-1"
                 >
                   {item.name}
                 </button>

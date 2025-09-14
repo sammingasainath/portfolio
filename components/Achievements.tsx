@@ -112,7 +112,7 @@ const Achievements = () => {
 
     return (
       <div
-        className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+        className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer hover:scale-105 transform hover:shadow-2xl hover:border-purple-500/30 hover:shadow-purple-500/20"
         onClick={() => hasMedia(item) ? openModal(item) : undefined}
       >
         <div className="h-48 bg-black/20 flex items-center justify-center overflow-hidden">
@@ -135,7 +135,18 @@ const Achievements = () => {
           <h3 className="text-white font-bold text-xl mt-2 mb-2">{title}</h3>
           {project && <p className="text-sm text-purple-200 mb-2">Project: {project}</p>}
           {impact && <p className="text-sm font-semibold text-green-300 mb-3">{impact}</p>}
-          <p className="text-gray-400 text-sm">{description}</p>
+          <p className="text-gray-400 text-sm mb-4">{description}</p>
+          
+          {hasMedia(item) && (
+            <div className="flex justify-end">
+              <div className="inline-flex items-center text-xs text-purple-400 group-hover:text-purple-300 transition-colors">
+                <span>Know More</span>
+                <svg className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -146,9 +157,10 @@ const Achievements = () => {
   return (
     <section id="achievements" className="py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-white mb-12">
-          Achievements & Recognition
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-center">
+          Achievements & <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Recognition</span>
         </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-12"></div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {achievements.filter(a => a.featured).map((achievement) => (
@@ -157,12 +169,14 @@ const Achievements = () => {
         </div>
 
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">Leadership & Public Speaking</h3>
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">
+            Leadership & <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Public Speaking</span>
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {leadership.map((role) => (
                <div 
                   key={role.id}
-                  className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                  className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(role) ? 'cursor-pointer hover:bg-white/20 hover:scale-105 transform hover:shadow-lg hover:border hover:border-purple-500/30' : ''}`}
                   onClick={() => hasMedia(role) ? openModal(role) : undefined}
                 >
                 <div className="h-40 bg-purple-500/10 flex items-center justify-center">
@@ -175,7 +189,18 @@ const Achievements = () => {
                 <div className="p-4">
                   <h4 className="font-bold text-white">{role.role}</h4>
                   <p className="text-sm text-purple-300">{role.organization}</p>
-                  <p className="text-xs text-gray-400 mt-1">{role.duration}</p>
+                  <p className="text-xs text-gray-400 mt-1 mb-3">{role.duration}</p>
+                  
+                  {hasMedia(role) && (
+                    <div className="flex justify-end">
+                      <div className="inline-flex items-center text-xs text-purple-400 group-hover:text-purple-300 transition-colors">
+                        <span>Know More</span>
+                        <svg className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -183,12 +208,14 @@ const Achievements = () => {
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">Volunteering</h3>
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Volunteering</span>
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {volunteering.map((activity) => (
               <div
                 key={activity.id}
-                className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                className={`bg-white/10 rounded-lg overflow-hidden transition-all duration-300 ${hasMedia(activity) ? 'cursor-pointer hover:bg-white/20 hover:scale-105 transform hover:shadow-lg hover:border hover:border-purple-500/30' : ''}`}
                 onClick={() => hasMedia(activity) ? openModal(activity) : undefined}
               >
                 <div className="h-40 bg-pink-500/10 flex items-center justify-center">
@@ -200,7 +227,18 @@ const Achievements = () => {
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold text-white">{activity.activity}</h4>
-                  <p className="text-sm text-pink-300">{activity.impact}</p>
+                  <p className="text-sm text-pink-300 mb-3">{activity.impact}</p>
+                  
+                  {hasMedia(activity) && (
+                    <div className="flex justify-end">
+                      <div className="inline-flex items-center text-xs text-purple-400 group-hover:text-purple-300 transition-colors">
+                        <span>Know More</span>
+                        <svg className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
