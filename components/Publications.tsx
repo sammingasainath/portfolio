@@ -82,24 +82,17 @@ const Publications = ({ publications, patents }: PublicationsProps) => {
         const pubId = parseInt(idPart, 10);
         if (!Number.isNaN(pubId)) {
           // ensure correct tab visible
-          setActiveTab(prev => (prev === 'patents' ? 'publications' : prev));
-          const allPubs = publications.publications ?? publications; // data shape safety
-          const match = (Array.isArray(allPubs) ? allPubs : []).find((p: any) => p.id === pubId);
-          if (match) {
-            openModal(match as Publication);
-          }
+          setActiveTab('publications');
+          const match: Publication | undefined = publications.find((p: Publication) => p.id === pubId);
+          if (match) openModal(match);
         }
       } else if (hash.startsWith('#patent-')) {
         const idPart = hash.substring('#patent-'.length);
         const patId = parseInt(idPart, 10);
         if (!Number.isNaN(patId)) {
-          setActiveTab(prev => (prev === 'publications' ? 'patents' : prev));
-          const allPatents = (patents as any) ?? [];
-          const list = Array.isArray(allPatents) ? allPatents : (allPatents.patents ?? []);
-          const match = list.find((p: any) => p.id === patId);
-          if (match) {
-            openModal(match as Patent);
-          }
+          setActiveTab('patents');
+          const match: Patent | undefined = patents.find((p: Patent) => p.id === patId);
+          if (match) openModal(match);
         }
       }
     };
