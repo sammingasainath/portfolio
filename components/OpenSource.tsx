@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 
@@ -37,16 +37,59 @@ const OpenSource = ({ contributions }: OpenSourceProps) => {
   const [filter, setFilter] = useState<'all' | 'project' | 'contribution' | 'maintenance'>('all');
   const [selectedContribution, setSelectedContribution] = useState<Contribution | null>(null);
   const [showNonFeatured, setShowNonFeatured] = useState(false);
+  const isClosingRef = useRef(false);
 
-  const openModal = (contribution: Contribution) => {
+  const openModal = useCallback((contribution: Contribution) => {
     setSelectedContribution(contribution);
     document.body.style.overflow = 'hidden';
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
+    isClosingRef.current = true;
     setSelectedContribution(null);
     document.body.style.overflow = 'auto';
-  };
+    if (typeof window !== 'undefined' && window.location.hash) {
+      window.history.pushState({}, document.title, window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [closeModal]);
+
+  useEffect(() => {
+    const processHash = () => {
+      if (isClosingRef.current) {
+        isClosingRef.current = false;
+        return;
+      }
+      const hash = window.location.hash;
+      if (hash.startsWith('#opensource-')) {
+        const idPart = hash.substring('#opensource-'.length);
+        const contributionId = parseInt(idPart, 10);
+        if (!Number.isNaN(contributionId)) {
+          const match = contributions.find(c => c.id === contributionId);
+          if (match) {
+            openModal(match);
+          }
+        }
+      }
+    };
+
+    // Delay to ensure the app is hydrated and ready
+    const timer = setTimeout(processHash, 100);
+    window.addEventListener('hashchange', processHash);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', processHash);
+    };
+  }, [contributions, openModal]);
 
   const types = ['all', 'project', 'contribution', 'maintenance'] as const;
   const filteredContributions = filter === 'all' 

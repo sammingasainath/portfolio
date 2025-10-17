@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import MediaRenderer, { MediaItem } from './MediaRenderer';
 
@@ -44,16 +44,74 @@ interface PublicationsProps {
 const Publications = ({ publications, patents }: PublicationsProps) => {
   const [activeTab, setActiveTab] = useState<'publications' | 'patents' | 'both'>('both');
   const [selectedItem, setSelectedItem] = useState<Publication | Patent | null>(null);
+  const isClosingRef = useRef(false);
 
-  const openModal = (item: Publication | Patent) => {
+  const openModal = useCallback((item: Publication | Patent) => {
     setSelectedItem(item);
     document.body.style.overflow = 'hidden';
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
+    isClosingRef.current = true;
     setSelectedItem(null);
     document.body.style.overflow = 'auto';
-  };
+    if (typeof window !== 'undefined' && window.location.hash) {
+      window.history.pushState({}, document.title, window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [closeModal]);
+
+  useEffect(() => {
+    const processHash = () => {
+      if (isClosingRef.current) {
+        isClosingRef.current = false;
+        return;
+      }
+      const hash = window.location.hash;
+      if (hash.startsWith('#publication-')) {
+        const idPart = hash.substring('#publication-'.length);
+        const pubId = parseInt(idPart, 10);
+        if (!Number.isNaN(pubId)) {
+          // ensure correct tab visible
+          setActiveTab(prev => (prev === 'patents' ? 'publications' : prev));
+          const allPubs = publications.publications ?? publications; // data shape safety
+          const match = (Array.isArray(allPubs) ? allPubs : []).find((p: any) => p.id === pubId);
+          if (match) {
+            openModal(match as Publication);
+          }
+        }
+      } else if (hash.startsWith('#patent-')) {
+        const idPart = hash.substring('#patent-'.length);
+        const patId = parseInt(idPart, 10);
+        if (!Number.isNaN(patId)) {
+          setActiveTab(prev => (prev === 'publications' ? 'patents' : prev));
+          const allPatents = (patents as any) ?? [];
+          const list = Array.isArray(allPatents) ? allPatents : (allPatents.patents ?? []);
+          const match = list.find((p: any) => p.id === patId);
+          if (match) {
+            openModal(match as Patent);
+          }
+        }
+      }
+    };
+
+    // Delay to ensure hydration
+    const timer = setTimeout(processHash, 100);
+    window.addEventListener('hashchange', processHash);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', processHash);
+    };
+  }, [publications, patents, openModal]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
