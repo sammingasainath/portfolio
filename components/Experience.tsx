@@ -152,10 +152,12 @@ const Experience = ({ experience }: ExperienceProps) => {
                 
                 {/* Content */}
                 <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl flex flex-col sm:flex-row overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <div 
+                    onClick={() => hasMedia(exp) && openModal(exp)}
+                    className={`bg-white/5 backdrop-blur-sm rounded-2xl flex flex-col sm:flex-row overflow-hidden border border-white/10 hover:bg-white/10 transition-all duration-300 ${hasMedia(exp) ? 'cursor-pointer' : ''}`}
+                  >
                     {/* Image Thumbnail */}
                     <div 
-                      onClick={() => hasMedia(exp) && openModal(exp)}
                       className={`w-full sm:w-1/3 h-48 sm:h-auto bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center shrink-0 overflow-hidden ${hasMedia(exp) ? 'cursor-pointer' : ''}`}
                     >
                       {thumbnailSrc ? (
@@ -176,7 +178,10 @@ const Experience = ({ experience }: ExperienceProps) => {
                     {/* Main Content */}
                     <div className="p-6 w-full sm:w-2/3">
                       <button 
-                        onClick={() => toggleExperience(index)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleExperience(index);
+                        }}
                         className="w-full text-left"
                       >
                         <div className="flex justify-between items-start mb-2">

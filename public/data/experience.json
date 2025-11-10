@@ -76,6 +76,38 @@
           "alt": "Letter of Recommendation from Solvitarka Technologies"
         }
       ]
+    },
+    {
+      "id": 3,
+      "company": "HR Staffing LLC",
+      "position": "AI Engineer",
+      "location": "USA (Remote)",
+      "duration": "October 2025 - Present ",
+      "type": "Full-time",
+      "description": "Offered position as AI Engineer, focusing on LLM-driven automation, retrieval-augmented systems, and enterprise AI integration.",
+      "responsibilities": [
+        "Develop scalable RAG (Retrieval-Augmented Generation) pipelines for enterprise applications",
+        "Productionize generative AI applications with focus on reliability and scalability",
+        "Optimize inference performance for large language models in production environments",
+        "Work on LLM-driven automation solutions for enterprise clients",
+        "Integrate retrieval-augmented systems into existing enterprise infrastructure"
+      ],
+      "technologies": [
+        "LLM",
+        "RAG",
+        "Generative AI",
+        "Python",
+        "Machine Learning",
+        "Enterprise AI Integration"
+      ],
+      "current": false,
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/bellagio/1.png",
+          "alt": "AI Engineer Job Offer from HR Staffing LLC"
+        }
+      ]
     }
   ]
 }
