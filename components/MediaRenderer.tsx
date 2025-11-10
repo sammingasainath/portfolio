@@ -12,7 +12,7 @@ export interface GalleryItem {
 }
 
 export type MediaItem = 
-  | { type: 'image' | 'video' | 'thumbnail' | 'iframe' | 'blog'; src: string; alt: string; title?: string }
+  | { type: 'image' | 'video' | 'thumbnail' | 'iframe' | 'blog' | 'pdf'; src: string; alt: string; title?: string }
   | GalleryItem;
 
 interface MediaRendererProps {
@@ -109,6 +109,39 @@ const MediaRenderer = ({ media, className = "" }: MediaRendererProps) => {
                     allowFullScreen
                     className="w-full h-full"
                   ></iframe>
+                </div>
+              </div>
+            );
+          case 'pdf':
+            return (
+              <div key={index} className="space-y-2">
+                <div className="text-center p-2">
+                  <p className="font-bold text-white">{item.title || item.alt}</p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg p-4">
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                    <a 
+                      href={item.src} 
+                      download
+                      className="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                    >
+                      Download PDF
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </a>
+                    <a 
+                      href={item.src} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                    >
+                      View in Browser
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             );

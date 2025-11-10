@@ -1,6 +1,30 @@
 {
   "publications": [
-  
+    {
+      "id": 1,
+      "title": "An Integrated Multi-Modal Wearable System for Proactive Monitoring of Physiological Distress in Industrial Workers: A Work-in-Progress Report",
+      "authors": ["Samminga Sainath Rao"],
+      "publicationVenue": "5th International Workshop on Machine Learning and Blockchain for Smart Society (MLBSS-2025) in conjunction with IEEE BuildSEC'25 - Building a Secure & Empowered Cyberspace",
+      "year": 2025,
+      "type": "conference",
+      "status": "Accepted",
+      "doi": "",
+      "url": "",
+      "abstract": "A work-in-progress report on an integrated multi-modal wearable system designed for proactive monitoring of physiological distress in industrial workers. The system leverages advanced artificial intelligence and machine learning methodologies to enhance safety applications in industrial settings. This research contributes to the broader scope of smart society applications, focusing on intelligent healthcare solutions and safety monitoring systems.",
+      "keywords": ["Wearable Systems", "Physiological Monitoring", "Industrial Safety", "Multi-Modal Sensors", "Machine Learning", "Smart Healthcare", "AI/ML", "Safety Applications"],
+      "citations": 0,
+      "media": [
+        {
+          "type": "image",
+          "src": "/media/Publications/MLBSS_2025/1.png",
+          "alt": "MLBSS 2025 Paper Abstract",
+          "title": "Paper Abstract"
+        }
+      ],
+      "venue": "IIT Patna, Bihar, India",
+      "conferenceDate": "December 1-3, 2025",
+      "proceedings": "IEEE Xplore (in conjunction with BuildSEC'25 conference proceedings)"
+    }
   ],
   "patents": [
     {

@@ -8,7 +8,9 @@ interface Publication {
   id: number;
   title: string;
   authors: string[];
-  journal: string;
+  journal?: string; // Legacy field - use publicationVenue instead
+  conference?: string; // Legacy field - use publicationVenue instead
+  publicationVenue?: string; // Generic field for publication venue (journal or conference name)
   year: number;
   type: 'journal' | 'conference' | 'preprint' | 'book' | 'thesis';
   status: 'Published' | 'Accepted' | 'Under Review' | 'In Progress';
@@ -18,6 +20,9 @@ interface Publication {
   keywords: string[];
   citations: number;
   media: MediaItem[];
+  venue?: string;
+  conferenceDate?: string;
+  proceedings?: string;
 }
 
 interface Patent {
@@ -197,9 +202,13 @@ const Publications = ({ publications, patents }: PublicationsProps) => {
             {publication.authors.join(', ')}
           </p>
 
-          <p className="text-sm text-gray-400 mb-3 line-clamp-1">
-            {publication.journal}
-          </p>
+          <div className="text-sm text-gray-400 mb-3">
+            <span className="font-medium text-purple-400">{publication.type === 'conference' ? 'Conference:' : 'Journal:'}</span>
+            <span className="ml-1 line-clamp-1">{publication.publicationVenue || publication.journal || publication.conference}</span>
+            {publication.type === 'conference' && publication.venue && (
+              <span className="block text-xs text-gray-500 mt-1 line-clamp-1">{publication.venue}</span>
+            )}
+          </div>
 
           <div className="flex flex-wrap gap-2 mb-4">
             {publication.keywords.slice(0, 3).map((keyword, index) => (
@@ -439,8 +448,23 @@ const Publications = ({ publications, patents }: PublicationsProps) => {
                       <strong>Authors:</strong> {selectedItem.authors.join(', ')}
                     </p>
                     <p className="text-gray-300">
-                      <strong>Journal:</strong> {selectedItem.journal}
+                      <strong>{selectedItem.type === 'conference' ? 'Conference:' : 'Journal:'}</strong> {selectedItem.publicationVenue || selectedItem.journal || selectedItem.conference}
                     </p>
+                    {selectedItem.type === 'conference' && selectedItem.venue && (
+                      <p className="text-gray-300">
+                        <strong>Venue:</strong> {selectedItem.venue}
+                      </p>
+                    )}
+                    {selectedItem.type === 'conference' && selectedItem.conferenceDate && (
+                      <p className="text-gray-300">
+                        <strong>Date:</strong> {selectedItem.conferenceDate}
+                      </p>
+                    )}
+                    {selectedItem.type === 'conference' && selectedItem.proceedings && (
+                      <p className="text-gray-300">
+                        <strong>Proceedings:</strong> {selectedItem.proceedings}
+                      </p>
+                    )}
                     {selectedItem.doi && (
                       <p className="text-gray-300">
                         <strong>DOI:</strong> 
