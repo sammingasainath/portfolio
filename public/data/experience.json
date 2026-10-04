@@ -1,13 +1,65 @@
 {
   "experiences": [
     {
+      "id": 4,
+      "company": "MediSoar",
+      "position": "Software Engineer",
+      "location": "Remote",
+      "duration": "Jul 2026 - Present",
+      "type": "Full-time",
+      "description": "Building and scaling robust software solutions from the ground up, collaborating with cross-functional teams to translate complex requirements into high-performance applications.",
+      "responsibilities": [
+        "Develop, test, and maintain software applications in strict alignment with project requirements and technical specifications",
+        "Partner with project managers and design teams to define, build, and ship new platform features on schedule",
+        "Enhance core application functionality by integrating third-party APIs and external services",
+        "Troubleshoot and resolve software defects rapidly and participate in peer code reviews to enforce best practices",
+        "Guide junior developers through complex technical challenges and contribute to continuous improvement of Agile workflows",
+        "Author and maintain documentation for software architecture, system designs, and project roadmaps"
+      ],
+      "technologies": [
+        "Full-Stack Development",
+        "API Integration",
+        "Code Review",
+        "System Design",
+        "Agile",
+        "Technical Documentation"
+      ],
+      "current": true,
+      "media": []
+    },
+    {
+      "id": 3,
+      "company": "Laser Vascular Center",
+      "position": "Artificial Intelligence Engineer",
+      "location": "Phoenix, Arizona, United States (Remote)",
+      "duration": "Oct 2025 - Jul 2026",
+      "type": "Full-time",
+      "description": "Led AI automation across Real Estate, Healthcare, HVAC, and Education with advanced voice-driven solutions.",
+      "responsibilities": [
+        "Built production-grade Voice Agents using Retell AI, fully integrated with CRMs, APIs, and FHIR healthcare workflows",
+        "Developed Agentic AI systems using LangGraph, LangFlow, and CrewAI for autonomous, end-to-end task execution and enterprise integrations"
+      ],
+      "technologies": [
+        "Retell AI",
+        "Voice Agents",
+        "FHIR",
+        "LangGraph",
+        "LangFlow",
+        "CrewAI",
+        "Agentic AI",
+        "CRM Integration"
+      ],
+      "current": false,
+      "media": []
+    },
+    {
       "id": 1,
       "company": "Sambin Technologies Private Limited",
       "position": "Cofounder | Software Engineer & Product Manager",
       "location": "Visakhapatnam, Andhra Pradesh, India",
-      "duration": "Apr 2024 - Present",
+      "duration": "Apr 2024 - Jun 2026",
       "type": "Full-time",
-      "description": "Founded and leading a tech startup funded by NASSCOM Foundation and incubated at IIIT Bangalore.",
+      "description": "Founded and led a tech startup funded by NASSCOM Foundation and incubated at IIIT Bangalore.",
       "responsibilities": [
         "Set up scalable and efficient technical architectures to support company projects and products",
         "Conducted in-depth market surveys and research to stay ahead of industry trends and identify new opportunities",
@@ -28,7 +80,7 @@
         "Voice Assistant Integration",
         "UI/UX Design"
       ],
-      "current": true,
+      "current": false,
       "media": [
         {
           "type": "gallery",
@@ -74,38 +126,6 @@
           "type": "image",
           "src": "/media/Solvitarka Technologies/1.jpg",
           "alt": "Letter of Recommendation from Solvitarka Technologies"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "company": "HR Staffing LLC",
-      "position": "AI Engineer",
-      "location": "USA (Remote)",
-      "duration": "October 2025 - Present ",
-      "type": "Full-time",
-      "description": "Offered position as AI Engineer, focusing on LLM-driven automation, retrieval-augmented systems, and enterprise AI integration.",
-      "responsibilities": [
-        "Develop scalable RAG (Retrieval-Augmented Generation) pipelines for enterprise applications",
-        "Productionize generative AI applications with focus on reliability and scalability",
-        "Optimize inference performance for large language models in production environments",
-        "Work on LLM-driven automation solutions for enterprise clients",
-        "Integrate retrieval-augmented systems into existing enterprise infrastructure"
-      ],
-      "technologies": [
-        "LLM",
-        "RAG",
-        "Generative AI",
-        "Python",
-        "Machine Learning",
-        "Enterprise AI Integration"
-      ],
-      "current": false,
-      "media": [
-        {
-          "type": "image",
-          "src": "/media/bellagio/1.png",
-          "alt": "AI Engineer Job Offer from HR Staffing LLC"
         }
       ]
     }

@@ -79,7 +79,7 @@ export default async function Home() {
       </section>
       
       <footer className="bg-slate-900 text-white py-8 text-center">
-        <p>&copy; 2024 {data.profile.name}. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} {data.profile.name}. All rights reserved.</p>
         <p className="text-sm text-slate-400 mt-2">Built with Next.js & Tailwind CSS</p>
       </footer>
     </main>

@@ -5,12 +5,14 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Samminga Sainath Rao - Fullstack Developer & Technical Architect',
-  description: 'Passionate technologist with expertise in fullstack development, AI/ML, and product management. Co-founder of Sambin Technologies with experience in scaling technical architectures and leading development teams.',
+  title: 'Samminga Sainath Rao - Software Engineer | Voice & Agentic AI Builder',
+  description: 'Software engineer building voice and agentic AI systems and shipping products from idea to launch. Former co-founder of Sambin Technologies (NASSCOM Foundation funded, IIIT Bangalore incubated) and Smart India Hackathon 2024 winner.',
   keywords: [
     'Samminga Sainath Rao',
     'Fullstack Developer',
-    'Technical Architect',
+    'Software Engineer',
+    'Voice AI',
+    'Agentic AI',
     'AI/ML Engineer',
     'Flutter Developer',
     'React Developer',
@@ -25,15 +27,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://samminga-portfolio.vercel.app',
-    title: 'Samminga Sainath Rao - Fullstack Developer & Technical Architect',
-    description: 'Passionate technologist with expertise in fullstack development, AI/ML, and product management.',
+    url: 'https://sai.fhaida.com',
+    title: 'Samminga Sainath Rao - Software Engineer | Voice & Agentic AI Builder',
+    description: 'Software engineer building voice and agentic AI systems and shipping products from idea to launch.',
     siteName: 'Samminga Sainath Rao Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Samminga Sainath Rao - Fullstack Developer & Technical Architect',
-    description: 'Passionate technologist with expertise in fullstack development, AI/ML, and product management.',
+    title: 'Samminga Sainath Rao - Software Engineer | Voice & Agentic AI Builder',
+    description: 'Software engineer building voice and agentic AI systems and shipping products from idea to launch.',
   },
   robots: {
     index: true,
