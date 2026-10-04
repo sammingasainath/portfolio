@@ -1,9 +1,50 @@
 {
   "publications": [
     {
+      "id": 2,
+      "title": "Innov8rs at CRF Filling 2026: An Iterative Multi-LLM Ensemble Pipeline with Dynamic Few-Shot Retrieval and Data-Driven Precision Filtering",
+      "authors": [
+        "Samminga Sainath Rao",
+        "Sumit Mishra",
+        "Chanchal Suman"
+      ],
+      "publicationVenue": "Proceedings of the Third Workshop on Patient-Oriented Language Processing (CL4Health) @ LREC 2026",
+      "year": 2026,
+      "type": "conference",
+      "status": "Published",
+      "doi": "10.63317/2eg7dfwaf4o5",
+      "url": "https://aclanthology.org/2026.cl4health-1.35/",
+      "abstract": "In this paper, we present the technical report on the CL4Health 2026 Shared Task on Case Report Form (CRF) filling for our team Innov8rs. The paper explains the complete development of our system for the CL4Health 2026 Shared Task. We describe every phase of our system – from initial catastrophic failures with small models producing over 4,800 false positives, through prompt engineering breakthroughs, to our final multi-LLM ensemble combining Gemini 2.5 Flash and Llama 3.3 70B with dynamic TF-IDF-based few-shot retrieval. The main contribution of this work is a data-driven precision filter that suppresses predictions for CRF items with historically high false-positive rates. This single intervention reduced false positives from 816 to 171 on the English development set, boosting macro-F1 from 0.541 to 0.703. We document the engineering challenges of multi-API-key rotation across 11 Google API keys and 2 Groq keys, the design of four distinct ensemble strategies, and the critical analysis of why development-calibrated filters suffered from distribution shift on test data (final test F1: 0.47).",
+      "keywords": [
+        "Clinical NLP",
+        "Case Report Form Filling",
+        "LLM Ensemble",
+        "Few-Shot Retrieval",
+        "TF-IDF",
+        "Precision Filtering",
+        "Gemini 2.5 Flash",
+        "Llama 3.3 70B",
+        "Shared Task"
+      ],
+      "citations": 0,
+      "media": [
+        {
+          "type": "pdf",
+          "src": "https://aclanthology.org/2026.cl4health-1.35.pdf",
+          "alt": "CL4Health 2026 paper PDF",
+          "title": "Full Paper (ACL Anthology)"
+        }
+      ],
+      "venue": "Palma, Mallorca, Spain",
+      "conferenceDate": "May 2026",
+      "proceedings": "CL4Health @ LREC 2026, pages 390–394, ELRA Language Resources Association (ELRA). Anthology ID: 2026.cl4health-1.35"
+    },
+    {
       "id": 1,
       "title": "An Integrated Multi-Modal Wearable System for Proactive Monitoring of Physiological Distress in Industrial Workers: A Work-in-Progress Report",
-      "authors": ["Samminga Sainath Rao"],
+      "authors": [
+        "Samminga Sainath Rao"
+      ],
       "publicationVenue": "5th International Workshop on Machine Learning and Blockchain for Smart Society (MLBSS-2025) in conjunction with IEEE BuildSEC'25 - Building a Secure & Empowered Cyberspace",
       "year": 2025,
       "type": "conference",
@@ -11,7 +52,16 @@
       "doi": "",
       "url": "",
       "abstract": "A work-in-progress report on an integrated multi-modal wearable system designed for proactive monitoring of physiological distress in industrial workers. The system leverages advanced artificial intelligence and machine learning methodologies to enhance safety applications in industrial settings. This research contributes to the broader scope of smart society applications, focusing on intelligent healthcare solutions and safety monitoring systems.",
-      "keywords": ["Wearable Systems", "Physiological Monitoring", "Industrial Safety", "Multi-Modal Sensors", "Machine Learning", "Smart Healthcare", "AI/ML", "Safety Applications"],
+      "keywords": [
+        "Wearable Systems",
+        "Physiological Monitoring",
+        "Industrial Safety",
+        "Multi-Modal Sensors",
+        "Machine Learning",
+        "Smart Healthcare",
+        "AI/ML",
+        "Safety Applications"
+      ],
       "citations": 0,
       "media": [
         {
@@ -30,7 +80,9 @@
     {
       "id": 1,
       "title": "Cognilink",
-      "inventors": ["Samminga Sainath Rao"],
+      "inventors": [
+        "Samminga Sainath Rao"
+      ],
       "patentNumber": "In Pipeline",
       "applicationNumber": "In Pipeline",
       "filingDate": "To be Filed",
